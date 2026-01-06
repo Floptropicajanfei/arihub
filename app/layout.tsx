@@ -8,7 +8,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "AriHub",
+  title: "Ari",
 };
 
 export default function RootLayout({
