@@ -1,4 +1,4 @@
-import CommissionCard from "./CommissionCard";
+import CommissionCard from "../components/CommissionCard";
 
 export default function Commissions() {
   return (

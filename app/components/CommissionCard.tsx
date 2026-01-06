@@ -1,26 +1,51 @@
 type CommissionCardProps = {
   title: string;
   description: string;
+
+  // New style prop
   items?: string[];
+
+  // Backwards-compatible old prop
+  features?: string[];
+
+  // Optional extras (backwards-compatible)
+  priceNote?: string;
+  footerText?: string;
+  icon?: React.ReactNode;
+
   unavailable?: boolean;
+  emailTo?: string;
 };
 
 export default function CommissionCard({
   title,
   description,
-  items = [],
+  items,
+  features,
+  priceNote,
+  footerText,
+  icon,
   unavailable = false,
+  emailTo = "youremail@example.com",
 }: CommissionCardProps) {
+  const list = items ?? features ?? [];
+  const contactLabel = footerText ?? "Contact";
+
   return (
     <div className={`commission-box ${unavailable ? "is-unavailable" : ""}`}>
-
       <div className="commission-main">
-        <h3>{title}</h3>
-        <p>{description}</p>
+        <h3 className="commission-title">
+          {icon ? <span className="commission-icon">{icon}</span> : null}
+          {title}
+        </h3>
 
-        {items.length > 0 && (
+        <p className="commission-desc">{description}</p>
+
+        {priceNote ? <p className="commission-priceNote">{priceNote}</p> : null}
+
+        {list.length > 0 && (
           <ul className="commission-list">
-            {items.map((item, i) => (
+            {list.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
           </ul>
@@ -28,17 +53,16 @@ export default function CommissionCard({
       </div>
 
       <a
-        href={unavailable ? undefined : "mailto:floptropicajanfei@gmail.com"}
-        className={`commission-contact ${
-          unavailable ? "contact-disabled" : ""
-        }`}
+        href={unavailable ? undefined : `mailto:${emailTo}`}
+        className={`commission-contact ${unavailable ? "contact-disabled" : ""}`}
+        aria-disabled={unavailable}
       >
-        Contact
+        {contactLabel}
       </a>
 
       {unavailable && (
         <div className="commission-overlay">
-          Currently Unavailable
+          <span>Currently Unavailable</span>
         </div>
       )}
     </div>

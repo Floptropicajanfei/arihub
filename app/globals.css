@@ -189,3 +189,18 @@ body {
 .muted {
   color: #555;
 }
+.commission-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.commission-icon {
+  display: inline-flex;
+}
+
+.commission-priceNote {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 8px;
+}
