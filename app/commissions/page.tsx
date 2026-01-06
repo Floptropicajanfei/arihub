@@ -1,12 +1,10 @@
-import CommissionCard from "../components/Commissions";
+import CommissionCard from "../components/CommissionCard";
 
-export default function Commissions() {
+export default function CommissionsPage() {
   return (
     <main className="page commissions-page">
-
       <h1 className="section-title">Commissions</h1>
 
-      {/* MAIN COMMISSIONS */}
       <section className="commission-grid">
         <CommissionCard
           title="Roblox Building"
@@ -18,8 +16,8 @@ export default function Commissions() {
             "Black Friday discount",
           ]}
           priceNote="Starting at £49"
-          footerText="Contact Me"
-          unavailable
+          footerText="Contact"
+          unavailable={false}
           icon={<span>🧱</span>}
         />
 
@@ -33,8 +31,8 @@ export default function Commissions() {
             "Black Friday discount",
           ]}
           priceNote="Starting at £99"
-          footerText="Contact Me"
-          unavailable
+          footerText="Contact"
+          unavailable={false}
           icon={<span>🤖</span>}
         />
 
@@ -48,45 +46,49 @@ export default function Commissions() {
             "Mockups",
           ]}
           priceNote="Starting at £149"
-          footerText="Contact Me"
-          unavailable
+          footerText="Contact"
+          unavailable={false}
           icon={<span>🎨</span>}
         />
       </section>
 
-      {/* EXTRA OPTIONS */}
       <section className="commission-grid secondary">
         <CommissionCard
           title="Extra Options"
+          description="Add-ons for this category."
           features={[
             "Fast delivery — £30",
             "Extra updates — £50 each",
             "Distribution rights — £200",
           ]}
-          unavailable
+          footerText="Contact"
+          unavailable={false}
         />
 
         <CommissionCard
           title="Extra Options"
+          description="Add-ons for this category."
           features={[
             "Fast delivery — £30",
             "Extra commands — £50 each",
             "24/7 hosting — £5 / month",
           ]}
-          unavailable
+          footerText="Contact"
+          unavailable={false}
         />
 
         <CommissionCard
           title="Extra Options"
+          description="Add-ons for this category."
           features={[
             "Fast delivery — £30",
             "Extra mockups — £30 each",
             "Source files (PSD, AI) — £10",
           ]}
-          unavailable
+          footerText="Contact"
+          unavailable={false}
         />
       </section>
-
     </main>
   );
 }
