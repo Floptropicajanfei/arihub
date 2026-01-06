@@ -1,4 +1,4 @@
-import CommissionCard from "../components/CommissionCard";
+import CommissionCard from "./CommissionCard";
 
 export default function Commissions() {
   return (
@@ -8,7 +8,7 @@ export default function Commissions() {
       <div className="commissions-grid">
         <CommissionCard
           title="Roblox Building"
-          description="Full Roblox build package – models, mockups, and more."
+          description="Full Roblox build package – models, mockups and more."
           items={[
             "Roblox game",
             "Models",
@@ -17,6 +17,7 @@ export default function Commissions() {
           ]}
           price="Starting at £49"
           unavailable={false}
+          footerText="Contact"
         />
 
         <CommissionCard
@@ -30,6 +31,7 @@ export default function Commissions() {
           ]}
           price="Starting at £99"
           unavailable={false}
+          footerText="Contact"
         />
 
         <CommissionCard
@@ -38,11 +40,12 @@ export default function Commissions() {
           items={[
             "Logos",
             "Visual identity",
-            "Carefully chosen colours",
+            "Chosen colours",
             "Mockups",
           ]}
           price="Starting at £149"
-            unavailable={false}
+          unavailable={false}
+          footerText="Contact"
         />
       </div>
     </section>

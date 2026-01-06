@@ -1,18 +1,24 @@
-type CommissionCardProps = {
+import React from "react";
+
+export type CommissionCardProps = {
   title: string;
   description: string;
 
-  // New style prop
+  // You can use either of these (both supported)
   items?: string[];
-
-  // Backwards-compatible old prop
   features?: string[];
 
-  // Optional extras (backwards-compatible)
+  // Price support (both styles supported)
+  price?: string;
   priceNote?: string;
+
+  // Contact label support
   footerText?: string;
+
+  // Optional icon
   icon?: React.ReactNode;
 
+  // Availability + email
   unavailable?: boolean;
   emailTo?: string;
 };
@@ -22,6 +28,7 @@ export default function CommissionCard({
   description,
   items,
   features,
+  price,
   priceNote,
   footerText,
   icon,
@@ -29,6 +36,7 @@ export default function CommissionCard({
   emailTo = "youremail@example.com",
 }: CommissionCardProps) {
   const list = items ?? features ?? [];
+  const shownPrice = price ?? priceNote;
   const contactLabel = footerText ?? "Contact";
 
   return (
@@ -41,15 +49,17 @@ export default function CommissionCard({
 
         <p className="commission-desc">{description}</p>
 
-        {priceNote ? <p className="commission-priceNote">{priceNote}</p> : null}
+        {shownPrice ? (
+          <p className="commission-priceNote">{shownPrice}</p>
+        ) : null}
 
-        {list.length > 0 && (
+        {list.length > 0 ? (
           <ul className="commission-list">
             {list.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
           </ul>
-        )}
+        ) : null}
       </div>
 
       <a
