@@ -565,4 +565,11 @@ body {
   width: 36px;        /* was too big before */
   height: 36px;
   border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ededed;
+  background: #fff;
 }
