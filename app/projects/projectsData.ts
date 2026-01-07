@@ -1,8 +1,9 @@
 export type Project = {
   slug: string;
   title: string;
-  preview: string;     // short text shown on /projects cards
-  imageSrc: string;    // path in /public
+  preview: string;
+  imageSrc: string;
+  joinHref?: string; // NEW
 };
 
 export const projects: Project[] = [
@@ -11,11 +12,13 @@ export const projects: Project[] = [
     title: "XStage Productions",
     preview: "Write a short preview about XStage Productions here.",
     imageSrc: "/projects/xstage.png",
+    joinHref: "https://discord.gg/YOUR_INVITE", // <-- put your invite
   },
   {
     slug: "giuris",
     title: "Giuris",
     preview: "Write a short preview about Giuris here.",
     imageSrc: "/projects/giuris.png",
+    joinHref: "https://discord.gg/YOUR_INVITE", // <-- put your invite
   },
 ];

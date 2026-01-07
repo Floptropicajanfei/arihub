@@ -381,3 +381,18 @@ body {
     transform: none !important;
   }
 }
+/* Keep project buttons stacked at the bottom */
+.project-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-main {
+  flex: 1;
+}
+
+.project-actions {
+  display: flex;
+  flex-direction: column;
+}
