@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -8,7 +9,11 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Ari",
+  title: {
+    default: "Ari",
+    template: "%s · Ari",
+  },
+  description: "AriHub portfolio",
 };
 
 export default function RootLayout({
@@ -20,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={jakarta.className}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
