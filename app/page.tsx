@@ -52,7 +52,7 @@ export default function Home() {
       <section className="section">
         <h2>Commissions</h2>
 
-        <Row cols={3}>
+        <Row cols={2}>
           <CommissionCard
             title="Roblox Building"
             description="Full Roblox build package – models, mockups, and more."
@@ -63,18 +63,6 @@ export default function Home() {
             ]}
             price="Starting at £49"
           />
-
-          <CommissionCard
-            title="Discord Bot"
-            description="Full Discord bot package – code, commands, setup."
-            items={[
-              "Full Discord bot",
-              "15 commands",
-              "Setup",
-            ]}
-            price="Starting at £99"
-          />
-
           <CommissionCard
             title="Brand Visual Identity"
             description="Full branding package – logos, colours, typography."
