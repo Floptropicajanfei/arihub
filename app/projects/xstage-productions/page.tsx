@@ -5,7 +5,7 @@ import { projects } from "../projectsData";
 
 export default function XStagePage() {
   const project = projects.find((p) => p.slug === "xstage-productions");
-  const discordUrl = project?.discordUrl ?? "https://discord.gg/YOUR_INVITE";
+  const discordUrl = project?.joinHref ?? "https://discord.gg/YOUR_INVITE";
 
   return (
     <main className="page">

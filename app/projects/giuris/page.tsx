@@ -5,7 +5,7 @@ import { projects } from "../projectsData";
 
 export default function GiurisPage() {
   const project = projects.find((p) => p.slug === "giuris");
-  const discordUrl = project?.discordUrl ?? "https://discord.gg/YOUR_INVITE";
+  const discordUrl = project?.joinHref ?? "https://discord.gg/YOUR_INVITE";
 
   return (
     <main className="page">
