@@ -37,11 +37,6 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        {/* LEFT LOGO */}
-        <div className="footer-logo">
-        <img src="/logo-black.png" alt="Ari logo" />
-        </div>
-
 
         {/* COLUMNS */}
         <div className="footer-cols">
