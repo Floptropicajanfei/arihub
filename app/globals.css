@@ -323,3 +323,8 @@ body {
 .project-detail-card ul {
   padding-left: 18px;
 }
+.projects-home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 520px;
+}

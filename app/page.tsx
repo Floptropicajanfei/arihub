@@ -1,6 +1,7 @@
 import InfoCards from "./components/InfoCards";
 import CommissionCard from "./components/CommissionCard";
 import Row from "./components/Row";
+import ProjectCard from "./components/ProjectCard";
 
 export default function Home() {
   return (
@@ -63,6 +64,7 @@ export default function Home() {
             ]}
             price="Starting at £49"
           />
+
           <CommissionCard
             title="Brand Visual Identity"
             description="Full branding package – logos, colours, typography."
@@ -72,6 +74,29 @@ export default function Home() {
               "Mockups",
             ]}
             price="Starting at £149"
+          />
+        </Row>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="section">
+        <h2>My Projects</h2>
+
+        <Row cols={2}>
+          <ProjectCard
+            title="XStage Productions"
+            preview="A production and development brand focused on Roblox experiences and services."
+            imageSrc="/projects/xstage.png"
+            href="/projects/xstage-productions"
+            buttonLabel="Learn more"
+          />
+
+          <ProjectCard
+            title="Giuris"
+            preview="An AI-powered moderation and management system designed for Roblox."
+            imageSrc="/projects/giuris.png"
+            href="/projects/giuris"
+            buttonLabel="Learn more"
           />
         </Row>
       </section>
