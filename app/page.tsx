@@ -10,7 +10,7 @@ export default function Home() {
       {/* HERO (CENTERED TEXT) */}
       <section className="hero hero-centered">
         <h1>Hi, I’m Ari</h1>
-        <p>I am a designer, developer and a freelancer. Welcome to my website, which was fully designed and scripted by me.</p>
+        <p>I am a designer, developer and a freelancer.</p>
       </section>
 
       {/* INFO CARDS — 3 BESIDE EACH OTHER, CENTERED */}
@@ -18,7 +18,7 @@ export default function Home() {
         <InfoCards
           cards={[
             {
-              icon: "🎓",
+              icon: <img src="/icons/Mortarboard.png" alt="School" />,
               lines: [
                 "Y10 Student",
                 "Studying GCSEs: Health & Social Care, Drama, iMedia, History",
@@ -30,7 +30,7 @@ export default function Home() {
         <InfoCards
           cards={[
             {
-              icon: "🌍",
+              icon: <img src="/icons/translate.png" alt="Languages" />,
               lines: ["Native Polish", "Native English", "+ Learning more"],
             },
           ]}
@@ -39,7 +39,7 @@ export default function Home() {
         <InfoCards
           cards={[
             {
-              icon: "💼",
+              icon: <img src="/icons/laptop-01.png" alt="Experience" />,
               lines: [
                 "2 Years Graphic Design",
                 "3 Years Roblox Studio",

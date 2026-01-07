@@ -1,5 +1,5 @@
 type Card = {
-  icon?: string;
+  icon?: React.ReactNode;
   lines: string[];
 };
 
