@@ -10,7 +10,7 @@ export default function Home() {
       {/* HERO (CENTERED TEXT) */}
       <section className="hero hero-centered">
         <h1>Hi, I’m Ari</h1>
-        <p>I am a designer, developer and a freelancer.</p>
+        <p>I am a designer, developer and a freelancer. Welcome to my website, which was fully designed and scripted by me.</p>
       </section>
 
       {/* INFO CARDS — 3 BESIDE EACH OTHER, CENTERED */}
@@ -56,24 +56,24 @@ export default function Home() {
         <Row cols={2}>
           <CommissionCard
             title="Roblox Building"
-            description="Full Roblox build package – models, mockups, and more."
+            description="Full Roblox build package with custom made assets, scripts and builds."
             items={[
               "Roblox game",
               "Models",
-              "2 mockups or updates",
+              "Very detailed builds",
             ]}
-            price="Starting at £49"
+            price="Starting at £49.99"
           />
 
           <CommissionCard
-            title="Brand Visual Identity"
-            description="Full branding package – logos, colours, typography."
+            title="Website Coding"
+            description="Full website with assets, premade texts and more."
             items={[
-              "Logos",
-              "Visual identity",
-              "Mockups",
+              "Custom made assets",
+              "Fully designed theme, and well thought out colours, typography and more",
+              "Free website hosting",
             ]}
-            price="Starting at £149"
+            price="Starting at £99.99"
           />
         </Row>
       </section>
@@ -85,7 +85,7 @@ export default function Home() {
         <Row cols={2}>
           <ProjectCard
             title="XStage Productions"
-            preview="A production and development brand focused on Roblox experiences and services."
+            preview="A production which develops and builds amazing stages and concerts for all users to enjoy."
             imageSrc="/projects/xstage.png"
             href="/projects/xstage-productions"
             buttonLabel="Learn more"
