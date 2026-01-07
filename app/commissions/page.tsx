@@ -39,12 +39,7 @@ export default function CommissionsPage() {
         <CommissionCard
           title="Brand Visual Identity"
           description="Full branding package – logos, colours, typography."
-          features={[
-            "Logos",
-            "Visual identity",
-            "Chosen colours",
-            "Mockups",
-          ]}
+          features={["Logos", "Visual identity", "Chosen colours", "Mockups"]}
           priceNote="Starting at £149"
           footerText="Contact"
           unavailable={false}
@@ -55,7 +50,7 @@ export default function CommissionsPage() {
       <section className="commission-grid secondary">
         <CommissionCard
           title="Extra Options"
-          description="Add-ons for this category."
+          description="Optional add-ons."
           features={[
             "Fast delivery — £30",
             "Extra updates — £50 each",
@@ -67,7 +62,7 @@ export default function CommissionsPage() {
 
         <CommissionCard
           title="Extra Options"
-          description="Add-ons for this category."
+          description="Optional add-ons."
           features={[
             "Fast delivery — £30",
             "Extra commands — £50 each",
@@ -79,7 +74,7 @@ export default function CommissionsPage() {
 
         <CommissionCard
           title="Extra Options"
-          description="Add-ons for this category."
+          description="Optional add-ons."
           features={[
             "Fast delivery — £30",
             "Extra mockups — £30 each",
