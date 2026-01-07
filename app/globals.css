@@ -484,7 +484,7 @@ body {
 /* FOOTER */
 .site-footer {
   margin-top: 120px;
-  padding: 60px 24px 28px;
+  padding: 70px 24px 28px;
   border-top: 1px solid #ededed;
 }
 
@@ -493,27 +493,17 @@ body {
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: auto 1fr; /* logo rail + content */
-  gap: 32px;
-  align-items: stretch;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  align-items: start;
 }
 
-/* LOGO AS A VERTICAL RAIL */
-.footer-logo-rail {
-  width: 22px;                 /* VERY NARROW */
+.footer-brand {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline; /* aligns with text lines */
 }
 
-.footer-logo-rail img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  opacity: 0.85;
-}
 
-/* FOOTER COLUMNS */
 .footer-cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -524,6 +514,7 @@ body {
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 12px;
+  color: #111;
 }
 
 .footer-links {
@@ -537,38 +528,55 @@ body {
 }
 
 .footer-links a {
-  color: #777;
   text-decoration: none;
+  color: #777;
   font-size: 0.92rem;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
   color: #111;
 }
 
-/* FOOTER BOTTOM */
 .footer-bottom {
   max-width: 1200px;
   margin: 36px auto 0;
   padding-top: 18px;
   border-top: 1px solid #ededed;
-  font-size: 0.85rem;
-  color: #888;
 }
 
-/* MOBILE */
+.footer-bottom p {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Mobile */
 @media (max-width: 900px) {
   .footer-inner {
     grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .footer-logo-rail {
-    width: 18px;
+    gap: 28px;
   }
 
   .footer-cols {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+}
+.footer-logo {
+  width: 18px;       /* SAME as text line height */
+  height: 18px;
+  border-radius: 4px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background: transparent;
+}
+.footer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
