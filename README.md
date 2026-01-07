@@ -1,5 +1,5 @@
 git add .
-git commit -m "Add Vercel Analytics"
+git commit -m "Fix project card layout"
 git push
 
 
