@@ -14,6 +14,13 @@ export default function XStagePage() {
 
         <h1>{project?.title ?? "XStage Productions"}</h1>
 
+        {/* IMAGE */}
+        {project?.imageSrc && (
+          <div className="project-detail-image">
+            <img src={project.imageSrc} alt={project.title} />
+          </div>
+        )}
+
         {/* MAIN INFO BOX */}
         <div className="project-detail-box">
           <div className="project-detail-main">
