@@ -12,36 +12,35 @@ const jakarta = Plus_Jakarta_Sans({
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://arihub.online"), // IMPORTANT: use the exact domain you paste in Discord
   title: {
     default: "AriHub",
     template: "%s · AriHub",
   },
-  description: "Hi! I'm Ari",
-
-  metadataBase: new URL("https://www.arihub.online"),
+  description: "AriHub portfolio",
 
   openGraph: {
     title: "AriHub",
-    description: "Hi! I'm Ari",
-    url: "https://www.arihub.online",
-    siteName: "Ari",
+    description: "AriHub portfolio",
+    url: "https://arihub.online",
+    siteName: "AriHub",
     images: [
       {
-        url: "/og.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Hi! I'm Ari",
+        alt: "AriHub preview",
       },
     ],
-    locale: "en_GB",
     type: "website",
+    locale: "en_GB",
   },
 
   twitter: {
     card: "summary_large_image",
     title: "AriHub",
     description: "AriHub portfolio",
-    images: ["/og.png"],
+    images: ["/opengraph-image"],
   },
 };
 
