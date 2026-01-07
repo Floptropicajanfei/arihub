@@ -12,7 +12,7 @@ const jakarta = Plus_Jakarta_Sans({
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://arihub.online"), // IMPORTANT: use the exact domain you paste in Discord
+  metadataBase: new URL("https://www.arihub.online/"), // IMPORTANT: use the exact domain you paste in Discord
   title: {
     default: "AriHub",
     template: "%s · AriHub",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AriHub",
     description: "AriHub portfolio",
-    url: "https://arihub.online",
+    url: "https://www.arihub.online/",
     siteName: "AriHub",
     images: [
       {
