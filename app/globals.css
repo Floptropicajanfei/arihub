@@ -227,12 +227,20 @@ body {
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid #ededed;
+
   display: flex;
   flex-direction: column;
+  height: 100%; /* IMPORTANT */
 }
 
 .project-main {
   padding: 20px 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  flex-grow: 1; /* THIS pushes the button down */
 }
 
 .project-image {
