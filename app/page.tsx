@@ -43,6 +43,7 @@ export default function Home() {
               lines: [
                 "2 Years Graphic Design",
                 "3 Years Roblox Studio",
+                "2 Years Web Development",
               ],
             },
           ]}
