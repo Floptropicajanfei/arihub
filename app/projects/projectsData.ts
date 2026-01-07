@@ -12,13 +12,13 @@ export const projects: Project[] = [
     title: "XStage Productions",
     preview: "Write a short preview about XStage Productions here.",
     imageSrc: "/projects/xstage.png",
-    joinHref: "https://discord.gg/JfE2rv8FQj", // <-- put your invite
+    joinHref: "https://discord.gg/JfE2rv8FQj", 
   },
   {
     slug: "giuris",
     title: "Giuris",
     preview: "Write a short preview about Giuris here.",
     imageSrc: "/projects/giuris.png",
-    joinHref: "https://discord.gg/JfE2rv8FQj", // <-- put your invite
+    joinHref: "https://discord.gg/JfE2rv8FQj",
   },
 ];

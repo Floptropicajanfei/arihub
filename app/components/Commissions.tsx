@@ -21,29 +21,15 @@ export default function Commissions() {
         />
 
         <CommissionCard
-          title="Discord Bot"
-          description="Full Discord bot package – code, commands, setup."
+          title="Website"
+          description="Full Website package including, code, custom made assets, detailed designs"
           items={[
-            "Full Discord bot",
-            "15 commands",
+            "Full website inclding a max of 5 pages",
+            "Free website hosting",
             "Setup",
             "Black Friday discount",
           ]}
           price="Starting at £99"
-          unavailable={false}
-          footerText="Contact"
-        />
-
-        <CommissionCard
-          title="Brand Visual Identity"
-          description="Full branding package – logos, colours, typography."
-          items={[
-            "Logos",
-            "Visual identity",
-            "Chosen colours",
-            "Mockups",
-          ]}
-          price="Starting at £149"
           unavailable={false}
           footerText="Contact"
         />

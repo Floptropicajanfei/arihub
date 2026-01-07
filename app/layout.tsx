@@ -1,4 +1,5 @@
 import "./globals.css";
+import Footer from "./components/footer";
 import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={jakarta.className}>
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>

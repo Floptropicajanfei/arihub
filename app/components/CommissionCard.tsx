@@ -29,7 +29,7 @@ export default function CommissionCard({
   footerText,
   icon,
   unavailable = false,
-  emailTo = "youremail@example.com",
+  emailTo = "floptropicajanfei@gmail.com",
 }: CommissionCardProps) {
   const list = items ?? features ?? [];
   const shownPrice = price ?? priceNote;
