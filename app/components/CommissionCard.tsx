@@ -1,80 +1,50 @@
-import React from "react";
+import Link from "next/link";
 
-export type CommissionCardProps = {
+type Props = {
   title: string;
-  description: string;
-
-  // You can use either of these (both supported)
-  items?: string[];
-  features?: string[];
-
-  // Price support (both styles supported)
-  price?: string;
-  priceNote?: string;
-
-  // Contact label support
-  footerText?: string;
-
-  // Optional icon
-  icon?: React.ReactNode;
-
-  // Availability + email
-  unavailable?: boolean;
-  emailTo?: string;
+  preview: string;
+  imageSrc: string;
+  href: string;
+  buttonLabel?: string;
+  joinHref?: string;
 };
 
-export default function CommissionCard({
+export default function ProjectCard({
   title,
-  description,
-  items,
-  features,
-  price,
-  priceNote,
-  footerText,
-  icon,
-  unavailable = false,
-  emailTo = "youremail@example.com",
-}: CommissionCardProps) {
-  const list = items ?? features ?? [];
-  const shownPrice = price ?? priceNote;
-  const contactLabel = footerText ?? "Contact";
-
+  preview,
+  imageSrc,
+  href,
+  buttonLabel = "Learn more",
+  joinHref,
+}: Props) {
   return (
-    <div className={`commission-box ${unavailable ? "is-unavailable" : ""}`}>
-      <div className="commission-main">
-        <h3 className="commission-title">
-          {icon ? <span className="commission-icon">{icon}</span> : null}
-          {title}
-        </h3>
+    <div className="project-box">
+      <div className="project-main">
+        <div className="project-image">
+          {/* Use normal img to avoid build-time Image pipeline issues */}
+          <img className="project-img" src={imageSrc} alt={title} />
+        </div>
 
-        <p className="commission-desc">{description}</p>
-
-        {shownPrice ? (
-          <p className="commission-priceNote">{shownPrice}</p>
-        ) : null}
-
-        {list.length > 0 ? (
-          <ul className="commission-list">
-            {list.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        ) : null}
+        <h3 className="project-title">{title}</h3>
+        <p className="project-preview">{preview}</p>
       </div>
 
-      <a
-        href={unavailable ? undefined : `mailto:${emailTo}`}
-        className={`commission-contact ${unavailable ? "contact-disabled" : ""}`}
-        aria-disabled={unavailable}
-      >
-        {contactLabel}
-      </a>
+      <div className="project-actions">
+        <Link className="project-contact" href={href}>
+          {buttonLabel}
+        </Link>
 
-      {unavailable && (
-        <div className="commission-overlay">
-          <span>Currently Unavailable</span>
-        </div>
-      )}
+        {joinHref ? (
+          <a
+            className="project-contact"
+            href={joinHref}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Join Discord
+          </a>
+        ) : null}
+      </div>
     </div>
   );
 }
