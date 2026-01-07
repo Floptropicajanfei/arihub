@@ -52,7 +52,7 @@ export default function Footer() {
           <FooterColumn
             title="Other"
             links={[
-              { label: "Home", href: "https://www.arihub.online/", external: true },
+              { label: "Home", href: "/", external: false },
               { label: "XStage Productions", href: "/projects/xstage-productions" },
               { label: "Projects Discord Server", href: "https://discord.gg/JfE2rv8FQj", external: true },
             ]}
