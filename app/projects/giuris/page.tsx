@@ -8,7 +8,7 @@ export default function GiurisPage() {
   return (
     <main className="page">
       <section className="project-detail">
-        <Link className="back-link" href="/projects">← Back to Projects</Link>
+        <Link className="back-link" href="/">← Back Home</Link>
 
         <h1>{project?.title ?? "Giuris"}</h1>
 
