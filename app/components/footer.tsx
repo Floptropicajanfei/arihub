@@ -38,12 +38,10 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         {/* LEFT LOGO */}
-        <div className="footer-brand">
-          {/* Replace with your logo image if you want */}
-          <div className="footer-logo" aria-hidden="true">
-            J
-          </div>
+        <div className="footer-logo">
+        <img src="/logo-black.png" alt="Ari logo" />
         </div>
+
 
         {/* COLUMNS */}
         <div className="footer-cols">

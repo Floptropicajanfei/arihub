@@ -503,22 +503,6 @@ body {
   align-items: flex-start;
 }
 
-.footer-logo {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  border: 1px solid #ededed;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: #111;
-  background: #fff;
-}
-
 .footer-cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -576,4 +560,10 @@ body {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+}
+.footer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
