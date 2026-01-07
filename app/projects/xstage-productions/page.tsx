@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "../projectsData";
@@ -8,7 +9,7 @@ export default function XStagePage() {
   return (
     <main className="page">
       <section className="project-detail">
-        <Link className="back-link" href="/">← Back Home</Link>
+         <Link className="back-link" href="/">← Back Home</Link>
 
 
         <h1>{project?.title ?? "XStage Productions"}</h1>
