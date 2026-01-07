@@ -76,7 +76,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>Website fully coded and designed by Ari. Coded and Designed on Mac.</p>
+        <p>Website coded & designed by Ari • Made in England • © {new Date().getFullYear()} AriHub</p>
       </div>
     </footer>
   );
