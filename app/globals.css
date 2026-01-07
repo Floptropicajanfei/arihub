@@ -451,3 +451,16 @@ body {
 .project-detail-main ul {
   padding-left: 18px;
 }
+/* Project detail image */
+.project-detail-image {
+  margin-top: 16px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid #ededed;
+}
+
+.project-detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
