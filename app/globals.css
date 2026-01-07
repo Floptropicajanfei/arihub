@@ -123,9 +123,11 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
 }
 
 .commission-main {
+  flex: 1; /* pushes the contact bar to the bottom */
   padding: 20px 22px;
 }
 
@@ -336,6 +338,7 @@ body {
   grid-template-columns: 1fr;
   max-width: 520px;
 }
+
 /* Page-load flow animation */
 @keyframes flowDown {
   from {
