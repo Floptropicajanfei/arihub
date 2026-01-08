@@ -81,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* ✅ PRODUCTS (ADDED HERE) */}
-      {/* <ProductsStrip /> */}
+      <ProductsStrip />
 
       {/* PROJECTS */}
       <section className="section">
