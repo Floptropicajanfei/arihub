@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import productsDefault, { products as productsNamed } from "../productsData";
+import productsDefault, { products as productsNamed } from "./productsData";
 
 const safeProducts = Array.isArray(productsNamed)
   ? productsNamed
