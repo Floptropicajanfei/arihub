@@ -2,14 +2,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products } from "../productsData";
 
-export default function ProductDetail({ params }: { params: { slug: string } }) {
+export default function ProductDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const product = products.find((p) => p.slug === params.slug);
   if (!product) return notFound();
 
   return (
     <main className="page product-detail-page">
       <Link className="back-link" href="/">
-        ← Back Home
+        ← Back to Home
       </Link>
 
       <div className="buy-hero">
@@ -31,19 +35,13 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
               <span className="buy-alt">{product.priceAlt}</span>
             </div>
 
-            <a
-              className="buy-button"
-              href={product.stripeUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="buy-button" href={product.stripeUrl} target="_blank" rel="noreferrer">
               Purchase
             </a>
           </div>
         </div>
       </div>
 
-      {/* Optional “big image” lower section like your mock */}
       <div className="buy-imageLarge">
         <img src={product.imageSrc} alt={`${product.name} preview`} />
       </div>

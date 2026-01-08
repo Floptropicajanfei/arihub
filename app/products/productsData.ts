@@ -12,7 +12,7 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: "AriTest",
+    slug: "aritest",
     name: "Ari",
     tagline: "This is a test",
     description:
