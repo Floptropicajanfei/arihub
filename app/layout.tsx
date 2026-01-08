@@ -14,22 +14,22 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.arihub.online/"), // IMPORTANT: use the exact domain you paste in Discord
   title: {
-    default: "AriHub",
+    default: "Ari",
     template: "%s · AriHub",
   },
   description: "AriHub portfolio",
 
   openGraph: {
-    title: "AriHub",
+    title: "Ari",
     description: "AriHub portfolio",
     url: "https://www.arihub.online/",
     siteName: "AriHub",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "AriHub preview",
+        alt: "Ari preview",
       },
     ],
     type: "website",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "AriHub",
+    title: "Ari",
     description: "AriHub portfolio",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.png"],
   },
 };
 
