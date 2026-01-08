@@ -1,23 +1,23 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/app/lib/stripe";
+import { getStripe } from "@/app/lib/stripe";
 
 export async function POST(req: Request) {
-  // ✅ Hard guard so builds never crash
-  if (!process.env.STRIPE_SECRET_KEY || !stripe) {
+  // ✅ Guard: don’t crash, return a clean error
+  if (!process.env.STRIPE_SECRET_KEY) {
     return NextResponse.json(
-      { error: "Stripe is not configured" },
+      { error: "Stripe is not configured (missing STRIPE_SECRET_KEY)" },
       { status: 500 }
     );
   }
 
   try {
-    const body = await req.json();
+    const stripe = getStripe(); // ✅ CALL the function
 
+    const body = await req.json();
     const name: string = body?.name || "Product";
     const amountPence: number = Number(body?.amountPence || 1000);
 
-    const siteUrl =
-      process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -27,16 +27,14 @@ export async function POST(req: Request) {
         {
           price_data: {
             currency: "gbp",
-            product_data: {
-              name,
-            },
-            unit_amount: amountPence,
+            product_data: { name },
+            unit_amount: amountPence, // pence
           },
           quantity: 1,
         },
       ],
 
-      // ✅ IMPORTANT: metadata for Discord webhook
+      // ✅ metadata used by Discord webhook
       metadata: {
         productName: name,
       },
@@ -48,7 +46,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
     console.error("Stripe checkout error:", err);
-
     return NextResponse.json(
       { error: err?.message || "Stripe error" },
       { status: 500 }

@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 
-const key = process.env.STRIPE_SECRET_KEY;
-
-export const stripe = key
-  ? new Stripe(key)
-  : (null as unknown as Stripe);
+export function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) throw new Error("STRIPE_SECRET_KEY missing");
+  return new Stripe(key);
+}
