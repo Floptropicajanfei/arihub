@@ -15,21 +15,21 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.arihub.online/"), // IMPORTANT: use the exact domain you paste in Discord
   title: {
     default: "Ari",
-    template: "%s · AriHub",
+    template: "",
   },
-  description: "AriHub portfolio",
+  description: "",
 
   openGraph: {
     title: "Ari",
-    description: "AriHub portfolio",
+    description: "",
     url: "https://www.arihub.online/",
-    siteName: "AriHub",
+    siteName: "Ari",
     images: [
       {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Ari preview",
+        alt: "",
       },
     ],
     type: "website",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ari",
-    description: "AriHub portfolio",
+    description: "",
     images: ["/opengraph-image.png"],
   },
 };
