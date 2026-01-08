@@ -11,36 +11,31 @@ const jakarta = Plus_Jakarta_Sans({
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://www.arihub.online/"), // IMPORTANT: use the exact domain you paste in Discord
-  title: {
-    default: "Ari",
-    template: "",
-  },
-  description: "",
+export const metadata = {
+  title: "AriHub",
+  description: "Ari – Designer, Developer & Freelancer",
 
   openGraph: {
-    title: "Ari",
-    description: "",
-    url: "https://www.arihub.online/",
-    siteName: "Ari",
+    title: "AriHub",
+    description: "Designer, Developer & Freelancer",
+    url: "https://www.arihub.online",
+    siteName: "AriHub",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/preview.png", // ✅ YOUR image only
         width: 1200,
         height: 630,
-        alt: "",
+        alt: "AriHub Preview",
       },
     ],
     type: "website",
-    locale: "en_GB",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Ari",
-    description: "",
-    images: ["/opengraph-image.png"],
+    title: "AriHub",
+    description: "Designer, Developer & Freelancer",
+    images: ["/preview.png"], // ✅ same image
   },
 };
 
