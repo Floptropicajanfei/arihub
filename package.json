@@ -15,7 +15,8 @@
     "framer-motion": "^12.24.0",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "stripe": "^20.1.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.3",

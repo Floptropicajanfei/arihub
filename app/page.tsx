@@ -2,6 +2,7 @@ import InfoCards from "./components/InfoCards";
 import CommissionCard from "./components/CommissionCard";
 import Row from "./components/Row";
 import ProjectCard from "./components/ProjectCard";
+import ProductsStrip from "./components/ProductsStrip";
 
 export default function Home() {
   return (
@@ -78,6 +79,9 @@ export default function Home() {
           />
         </Row>
       </section>
+
+      {/* ✅ PRODUCTS (ADDED HERE) */}
+      <ProductsStrip />
 
       {/* PROJECTS */}
       <section className="section">
