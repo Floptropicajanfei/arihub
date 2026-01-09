@@ -788,3 +788,27 @@ body {
   height: auto;
   display: block;
 }
+
+.legal-page h2 {
+  font-size: 1.35rem;
+  margin-top: 36px;
+  margin-bottom: 14px;
+}
+
+.legal-page p {
+  margin-top: 14px;
+}
+
+.legal-page ul {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.legal-page li {
+  margin-bottom: 8px;
+}
+
+.legal-note {
+  margin-top: 32px;
+  font-weight: 500;
+}
