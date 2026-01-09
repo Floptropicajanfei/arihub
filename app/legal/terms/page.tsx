@@ -45,9 +45,7 @@ export default function TermsPage() {
         <li>Delays caused by lack of communication or late responses are not the provider’s responsibility.</li>
         <li>Completed projects will be sent via digital transfer (email, Google Drive, or Discord).</li>
         <li>Clients will receive progress updates at agreed intervals.</li>
-        <li>Revision requests must be made within 7 days of delivery.</li>
-        <li>Failure to request revisions within this period means the project is considered accepted.</li>
-        <li>Delivery dates are not guaranteed unless specifically agreed upon in writing.</li>
+        <li>Delivery dates are not guaranteed.</li>
         <li>Ongoing maintenance is not provided unless stated in the service description.</li>
         <li>Projects may include preview watermarks until full payment is confirmed.</li>
         <li>Clients are responsible for verifying all deliverables upon receipt.</li>
@@ -55,12 +53,10 @@ export default function TermsPage() {
 
       <h2>Distribution &amp; Sharing</h2>
       <ul>
-        <li>Clients may use delivered work for personal or commercial use only as agreed.</li>
+        <li>Clients may use delivered work for personal or commercial use.</li>
         <li>Redistribution, resale, or sublicensing of assets, source files, or code without written permission is prohibited.</li>
-        <li>Public sharing is allowed only after full payment and agreed usage terms.</li>
         <li>Distribution rights may be revoked if these Terms are violated.</li>
-        <li>Credit may be required unless otherwise agreed.</li>
-        <li>Modifying and redistributing work for derivative projects is allowed only with written approval.</li>
+        <li>Modifying and redistributing work for derivative projects is allowed only with approval.</li>
         <li>Unauthorized distribution may result in legal action under copyright law.</li>
         <li>Clients are responsible for ensuring compliance with platform rules (Roblox, Discord).</li>
         <li>Distribution rights do not transfer ownership; copyright remains with the creator.</li>
@@ -72,7 +68,6 @@ export default function TermsPage() {
         <li>Lost or damaged files cannot be recovered.</li>
         <li>Platform or technical changes are outside my control.</li>
         <li>Third-party hosting issues are not my responsibility.</li>
-        <li>Clients must back up all delivered files.</li>
         <li>Errors may be corrected at reasonable discretion.</li>
         <li>Liability will not exceed the amount paid for the service.</li>
         <li>No guarantees of business or game success are provided.</li>
@@ -86,7 +81,7 @@ export default function TermsPage() {
         <li>Discounts are applied automatically.</li>
         <li>Only one discount or promotion may be used per order.</li>
         <li>Discounts apply only to card payments and not Robux.</li>
-        <li>Add-ons may be excluded from promotions.</li>
+        <li>Add-ons are excluded from promotions.</li>
         <li>Discounts apply only to the base price.</li>
         <li>Abuse or sharing of discount codes may result in cancellation.</li>
         <li>Discounts may be used once per person per promotion.</li>
@@ -95,11 +90,10 @@ export default function TermsPage() {
 
       <h2>Communication Policy</h2>
       <ul>
-        <li>All official communication must be through listed email or Discord.</li>
+        <li>All official communication must be through email or Discord.</li>
         <li>Response times may vary due to workload or availability.</li>
-        <li>Project approvals must be confirmed in writing.</li>
         <li>Harassment, spam, or aggressive messages result in immediate termination with no refund.</li>
-        <li>Failure to respond within 7 days may result in cancellation without refund.</li>
+        <li>Failure to respond within 7 days may result in cancellation without refunds.</li>
         <li>All provided files must be legally owned or accessible by the client.</li>
         <li>Important updates will be sent through official channels only.</li>
         <li>Conversations remain private unless legally required.</li>
@@ -111,10 +105,6 @@ export default function TermsPage() {
       <ul>
         <li>Clients must provide complete and accurate details before work begins.</li>
         <li>I will not assist with anything that violates platform rules.</li>
-        <li>Revisions must stay within the agreed scope.</li>
-        <li>Deliverables must be reviewed upon receipt.</li>
-        <li>Failure to review within 7 days marks acceptance with no further support.</li>
-        <li>Additional revisions may require extra fees.</li>
         <li>Unprofessional behavior ends the working relationship with no refund.</li>
         <li>Clients may not request stolen or copyrighted assets.</li>
         <li>Delays caused by missing client information are not my responsibility.</li>
@@ -156,7 +146,6 @@ export default function TermsPage() {
         <li>Files are kept only as long as necessary.</li>
         <li>Payment information is handled by secure third-party processors.</li>
         <li>Access to project data is limited to the client and provider.</li>
-        <li>Clients must back up important files.</li>
         <li>Unofficial messaging risks are the client’s responsibility.</li>
       </ul>
 
@@ -166,12 +155,8 @@ export default function TermsPage() {
         <li>No refunds once work has begun.</li>
         <li>Failure to provide information within 7 days may cancel the project with no refund.</li>
         <li>No refunds after major work completion.</li>
-        <li>Refunds are returned only through the original payment method.</li>
-        <li>Chargebacks without communication result in permanent bans.</li>
-        <li>If I cannot complete a project, a refund or discount may be offered.</li>
-        <li>Refund requests must be made through official channels.</li>
+        <li>If I cannot complete a project, a refund may be offered.</li>
         <li>Refunds are not provided for client-caused delays.</li>
-        <li>A £5 refund processing fee applies if a refund is approved.</li>
       </ul>
 
       <h2>Hosting Terms</h2>
@@ -194,25 +179,21 @@ export default function TermsPage() {
         <li>Harassment or threats result in termination with no refund.</li>
         <li>Illegal or harmful requests are prohibited.</li>
         <li>Accurate information must be provided.</li>
-        <li>Free work or unpaid extras may not be demanded.</li>
+        <li>Free work or unpaid extras cannot be demanded.</li>
         <li>Spamming is not allowed.</li>
         <li>Pricing manipulation attempts end service.</li>
         <li>All Terms must be followed.</li>
         <li>Time zones and working hours must be respected.</li>
-        <li>Violations may result in permanent refusal of service.</li>
+        <li>Violations may result in refusal of service with no refund.</li>
       </ul>
 
       <h2>Delivery Expectations</h2>
       <ul>
-        <li>Delivery timelines are estimates.</li>
+        <li>Delivery timelines are estimates and are not accurate.</li>
         <li>Client-caused delays are not my responsibility.</li>
         <li>Rush delivery may cost extra.</li>
-        <li>Deliverables are sent through official channels only.</li>
-        <li>Revisions must be requested within 5 hours of delivery.</li>
         <li>Preview versions may be used until payment is complete.</li>
         <li>Final formats match service descriptions.</li>
-        <li>Platform changes after delivery are not my responsibility.</li>
-        <li>Clients must back up delivered files.</li>
       </ul>
 
       <h2>Security Policy</h2>
@@ -225,12 +206,11 @@ export default function TermsPage() {
         <li>Private files and credentials must not be shared publicly.</li>
         <li>Sensitive data must be sent securely.</li>
         <li>Vulnerabilities should be reported immediately.</li>
-        <li>Unsafe project environments may be refused.</li>
         <li>Use of services implies agreement to follow security practices.</li>
       </ul>
 
       <p className="legal-note">
-        Once you enter the website you automatically agree to these Terms of Service.
+        The Terms of Service may change without notice beforehand | Last Updated 9/1/26
       </p>
     </main>
   );
