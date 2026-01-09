@@ -5,14 +5,9 @@ export default function TermsPage() {
 
       <p>
         These Terms of Service (“Terms”) outline the rules, responsibilities, and
-        expectations for using my services, including Roblox Building, Discord
-        Bot Development, and Brand Visual Identity packages. By ordering or using
+        expectations for using my services. By ordering or using
         any service, you agree to these Terms in full. Please read them carefully
-        before proceeding.
-      </p>
-
-      <p>
-        These Additional Terms of Service provide extra rules and guidelines
+        before proceeding. The Additional Terms of Service provide extra rules and guidelines
         relating to discounts, communication, website use, and general client
         behavior. These terms support and extend the main Terms of Service. By
         using any services, visiting the website, or communicating through DMs,
