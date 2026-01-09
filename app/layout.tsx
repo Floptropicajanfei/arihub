@@ -12,20 +12,20 @@ const jakarta = Plus_Jakarta_Sans({
 import type { Metadata } from "next";
 
 export const metadata = {
-  title: "AriHub",
-  description: "Ari – Designer, Developer & Freelancer",
+  title: "Ari",
+  description: "",
 
   openGraph: {
-    title: "AriHub",
-    description: "Designer, Developer & Freelancer",
+    title: "Ari",
+    description: "",
     url: "https://www.arihub.online",
-    siteName: "AriHub",
+    siteName: "Ari",
     images: [
       {
         url: "/preview.png", // ✅ YOUR image only
         width: 1200,
         height: 630,
-        alt: "AriHub Preview",
+        alt: "Ari",
       },
     ],
     type: "website",
@@ -33,8 +33,8 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "AriHub",
-    description: "Designer, Developer & Freelancer",
+    title: "Ari",
+    description: "",
     images: ["/preview.png"], // ✅ same image
   },
 };

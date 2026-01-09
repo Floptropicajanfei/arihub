@@ -64,7 +64,7 @@ export default function Footer() {
               { label: "Policies", href: "/legal/policies" },
               { label: "Copyright", href: "/legal/copyright" },
               { label: "Privacy Policy", href: "/legal/privacy" },
-              { label: "Terms of Service", href: "/legal/terms" },
+              { label: "General Terms of Service", href: "/legal/terms" },
               { label: "Cookie Policy", href: "/legal/cookies" },
             ]}
           />
