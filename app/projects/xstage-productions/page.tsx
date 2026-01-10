@@ -28,13 +28,6 @@ export default function XStagePage() {
             <p>
              XS Productions, where determined builders, scriptures and UI/UX designers come together to make great Concert games. XStage Productions also offer Products! Join now to test out some of our newly added products.
             </p>
-
-            <h2></h2>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
           </div>
 
           {/* BOTTOM BAR BUTTON */}
