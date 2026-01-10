@@ -37,7 +37,7 @@ export default function CookiesPage() {
       <p>
         For questions about cookies, contact:
         <br />
-        <strong>youremail@example.com</strong>
+        <strong>floptropicajanfei@gmail.com</strong>
       </p>
     </main>
   );

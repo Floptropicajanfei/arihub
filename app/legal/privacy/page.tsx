@@ -55,7 +55,7 @@ export default function PrivacyPage() {
       <p>
         For privacy-related enquiries, contact:
         <br />
-        <strong>youremail@example.com</strong>
+        <strong>floptropicajanfei@gmail.com</strong>
       </p>
     </main>
   );

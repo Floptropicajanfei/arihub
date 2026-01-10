@@ -5,7 +5,7 @@ import { projects } from "../projectsData";
 
 export default function XStagePage() {
   const project = projects.find((p) => p.slug === "xstage-productions");
-  const discordUrl = project?.joinHref ?? "https://discord.gg/YOUR_INVITE";
+  const discordUrl = project?.joinHref ?? "https://discord.gg/JfE2rv8FQj";
 
   return (
     <main className="page">
@@ -26,15 +26,14 @@ export default function XStagePage() {
           <div className="project-detail-main">
             <h2>About</h2>
             <p>
-              Add your XStage Productions description here. Explain what it is, what you do,
-              what it offers, and highlights.
+             XS Productions, where determined builders, scriptures and UI/UX designers come together to make great Concert games. XStage Productions also offer Products! Join now to test out some of our newly added products.
             </p>
 
-            <h2>What I did</h2>
+            <h2></h2>
             <ul>
-              <li>Add bullet points here</li>
-              <li>Add bullet points here</li>
-              <li>Add bullet points here</li>
+              <li></li>
+              <li></li>
+              <li></li>
             </ul>
           </div>
 
