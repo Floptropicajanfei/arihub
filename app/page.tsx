@@ -1,3 +1,4 @@
+// app/page.tsx
 import InfoCards from "./components/InfoCards";
 import CommissionCard from "./components/CommissionCard";
 import Row from "./components/Row";
@@ -75,7 +76,7 @@ export default function Home() {
         </Row>
       </section>
 
-      {/* ✅ PRODUCTS (PUT BETWEEN COMMISSIONS AND PROJECTS) */}
+      {/* PRODUCTS (between commissions and projects) */}
       <ProductsStrip />
 
       {/* PROJECTS */}
