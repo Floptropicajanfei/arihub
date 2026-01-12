@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import { products } from "../productsData";
 
-export const dynamicParams = false;
+export const dynamic = "force-static";
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
+  return products.map((p) => ({
+    slug: p.slug,
   }));
 }
 
@@ -23,8 +24,7 @@ export default function ProductPage({
   }
 
   return (
-    <main className="page" style={{ paddingBottom: 80 }}>
-      {/* HERO */}
+    <main className="page">
       <section style={{ marginBottom: 64 }}>
         <img
           src={product.heroImage}
@@ -36,7 +36,7 @@ export default function ProductPage({
           }}
         />
 
-        <h1 style={{ marginBottom: 16 }}>{product.name}</h1>
+        <h1>{product.name}</h1>
 
         <p style={{ maxWidth: 800, lineHeight: 1.7 }}>
           {product.description}
@@ -59,7 +59,6 @@ export default function ProductPage({
         </div>
       </section>
 
-      {/* GALLERY */}
       {product.galleryImages && (
         <section
           style={{
