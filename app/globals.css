@@ -1048,3 +1048,138 @@ body {
   gap: 8px;
   font-weight: 500;
 }
+/* GRID */
+.products-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap:24px;
+}
+
+/* CARD */
+.product-box{
+  background:#fff;
+  border:1px solid #e6e6e6;
+  border-radius:18px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* MEDIA AREA — fixes proportions */
+.product-image{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden;
+
+  /* keeps it proportional */
+  aspect-ratio: 16 / 10;
+  background:#f6f6f6;
+}
+
+/* TRACK SLIDER */
+.product-track{
+  height:100%;
+  width:100%;
+  display:flex;
+  transition: transform 420ms cubic-bezier(.22,.9,.2,1);
+}
+
+.product-slide{
+  min-width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.product-slide img{
+  width:100%;
+  height:100%;
+  object-fit: cover;      /* makes it look “normal” */
+  display:block;
+}
+
+/* ARROWS — always visible */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:5;
+
+  width:36px;
+  height:36px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,0.92);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.arrow img{
+  width:16px;
+  height:16px;
+}
+
+.arrow.left{ left:10px; }
+.arrow.right{ right:10px; }
+
+/* TEXT */
+.product-content{
+  padding-top:12px;
+}
+
+.product-content h3{
+  font-size:1.05rem;
+  margin-bottom:6px;
+}
+
+.muted{
+  color:#555;
+  font-size:0.95rem;
+}
+
+/* FOOTER */
+.product-footer{
+  margin-top:auto;
+  padding-top:14px;
+  display:flex;
+  justify-content:flex-end;
+}
+
+/* BUTTON — normal sized, white like your other UI */
+.btn.btn-white{
+  background:#fff;
+  border:1px solid #e6e6e6;
+  border-radius:12px;
+
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  text-decoration:none;
+  color:#111;             /* keeps it BLACK */
+}
+
+/* robux icon & price */
+.robux-icon{
+  width:18px;
+  height:18px;
+  object-fit:contain;
+}
+
+.robux-price{
+  font-size:1.05rem;      /* bigger */
+  font-weight:600;
+  color:#111;             /* black */
+}
+
+/* optional hover pop */
+.product-box:hover{
+  transform: translateY(-2px);
+  transition: transform 200ms ease;
+}
