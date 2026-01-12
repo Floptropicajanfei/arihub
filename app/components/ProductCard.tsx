@@ -6,96 +6,65 @@ type Product = {
   id: string;
   slug: string;
   name: string;
-  shortDescription: string;
 
-  // Any of these may exist depending on your data:
-  cardImages?: string[];
-  galleryImages?: string[];
-  cardImage?: string;
-  heroImage?: string;
+  pageDescription: string;
+  shortDescription?: string;
+
+  cardImages: string[];
 
   robuxPrice: number;
   robloxGameUrl: string;
 };
 
+function clampIndex(i: number, len: number) {
+  if (len <= 0) return 0;
+  return (i % len + len) % len;
+}
+
 export default function ProductCard({ product }: { product: Product }) {
-  // ✅ Very defensive: works with any of the common fields
-  const images = useMemo(() => {
-    const p: any = product;
-
-    const fromCardImages =
-      Array.isArray(p.cardImages) && p.cardImages.length ? p.cardImages : null;
-
-    const fromGallery =
-      Array.isArray(p.galleryImages) && p.galleryImages.length
-        ? p.galleryImages
-        : null;
-
-    const fromSingleCard = typeof p.cardImage === "string" && p.cardImage
-      ? [p.cardImage]
-      : null;
-
-    const fromHero = typeof p.heroImage === "string" && p.heroImage
-      ? [p.heroImage]
-      : null;
-
-    return fromCardImages ?? fromGallery ?? fromSingleCard ?? fromHero ?? [];
-  }, [product]);
+  const images = useMemo(() => product.cardImages ?? [], [product.cardImages]);
+  const hasMany = images.length > 1;
 
   const [index, setIndex] = useState(0);
 
-  // ✅ Reset index if images change (prevents out-of-range blank)
-  useEffect(() => {
-    setIndex(0);
-  }, [product.id, images.length]);
+  // direction for slide animation
+  const [dir, setDir] = useState<"left" | "right">("right");
+  const [animKey, setAnimKey] = useState(0);
 
-  // Zoom modal state + fade-out
+  // zoom modal
   const [zoomOpen, setZoomOpen] = useState(false);
   const [zoomClosing, setZoomClosing] = useState(false);
 
-  // Hover pause
-  const [hovered, setHovered] = useState(false);
+  const autoplayRef = useRef<number | null>(null);
 
-  const intervalRef = useRef<number | null>(null);
-  const hasMany = images.length > 1;
-
-  const next = () => {
+  const go = (nextIndex: number, direction: "left" | "right") => {
     if (!images.length) return;
-    setIndex((i) => (i + 1) % images.length);
+    setDir(direction);
+    setIndex(clampIndex(nextIndex, images.length));
+    setAnimKey((k) => k + 1);
   };
 
-  const prev = () => {
-    if (!images.length) return;
-    setIndex((i) => (i - 1 + images.length) % images.length);
-  };
+  const next = () => go(index + 1, "right");
+  const prev = () => go(index - 1, "left");
 
-  // ✅ Autoplay (pauses on hover OR zoom)
+  // autoplay (pause when zoom open)
   useEffect(() => {
-    if (!hasMany) return;
-    if (zoomOpen) return;
-    if (hovered) return;
+    if (!hasMany || zoomOpen) return;
 
-    // clear old interval
-    if (intervalRef.current) {
-      window.clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-
-    intervalRef.current = window.setInterval(() => {
-      // use functional state update indirectly via next()
-      next();
+    autoplayRef.current = window.setInterval(() => {
+      // setDir needs to be "right" for autoplay
+      setDir("right");
+      setIndex((i) => clampIndex(i + 1, images.length));
+      setAnimKey((k) => k + 1);
     }, 4500);
 
     return () => {
-      if (intervalRef.current) {
-        window.clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
+      if (autoplayRef.current) window.clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMany, zoomOpen, hovered, images.length]);
+  }, [hasMany, zoomOpen, images.length]);
 
-  // Keyboard controls when zoomed
+  // keyboard controls when zoomed
   useEffect(() => {
     if (!zoomOpen) return;
 
@@ -108,7 +77,7 @@ export default function ProductCard({ product }: { product: Product }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zoomOpen, images.length]);
+  }, [zoomOpen, index, images.length]);
 
   const openZoom = () => {
     if (!images.length) return;
@@ -126,11 +95,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <>
-      <article
-        className="product-box"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
+      <article className="product-box">
         {/* IMAGE */}
         <div className="product-media">
           {images.length ? (
@@ -142,8 +107,8 @@ export default function ProductCard({ product }: { product: Product }) {
                 aria-label="Open image"
               >
                 <img
-                  key={`${product.id}-${images[index]}`} // ensures animation
-                  className="product-img"
+                  key={`${animKey}-${images[index]}`}
+                  className={`product-img slide-${dir}`}
                   src={images[index]}
                   alt={product.name}
                 />
@@ -161,7 +126,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     }}
                     aria-label="Previous image"
                   >
-                    <img src="/arrowleft.png" alt="" />
+                    <img src="/arrowleft.png" alt="" draggable={false} />
                   </button>
 
                   <button
@@ -174,7 +139,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     }}
                     aria-label="Next image"
                   >
-                    <img src="/arrowright.png" alt="" />
+                    <img src="/arrowright.png" alt="" draggable={false} />
                   </button>
                 </>
               )}
@@ -187,10 +152,15 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* TEXT */}
         <div className="product-body">
           <h3 className="product-title">{product.name}</h3>
-          <p className="product-desc">{product.shortDescription}</p>
+
+          <p className="product-page-desc">{product.pageDescription}</p>
+
+          {product.shortDescription ? (
+            <p className="product-desc">{product.shortDescription}</p>
+          ) : null}
         </div>
 
-        {/* FOOTER (buy button) */}
+        {/* FOOTER */}
         <div className="product-footer">
           <a
             className="btn btn-buy"
@@ -204,7 +174,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </article>
 
-      {/* ZOOM MODAL */}
+      {/* ZOOM */}
       {zoomOpen && (
         <div
           className={`zoom-backdrop ${zoomClosing ? "zoom-out" : "zoom-in"}`}
@@ -214,7 +184,12 @@ export default function ProductCard({ product }: { product: Product }) {
         >
           <div className={`zoom-panel ${zoomClosing ? "zoom-out" : "zoom-in"}`}>
             <div className="zoom-media">
-              <img className="zoom-img" src={images[index]} alt={product.name} />
+              <img
+                key={`${animKey}-zoom-${images[index]}`}
+                className={`zoom-img slide-${dir}`}
+                src={images[index]}
+                alt={product.name}
+              />
 
               {hasMany && (
                 <>
@@ -224,7 +199,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     onClick={prev}
                     aria-label="Previous image"
                   >
-                    <img src="/arrowleft.png" alt="" />
+                    <img src="/arrowleft.png" alt="" draggable={false} />
                   </button>
 
                   <button
@@ -233,7 +208,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     onClick={next}
                     aria-label="Next image"
                   >
-                    <img src="/arrowright.png" alt="" />
+                    <img src="/arrowright.png" alt="" draggable={false} />
                   </button>
                 </>
               )}
