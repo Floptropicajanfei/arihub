@@ -4,6 +4,7 @@ import Row from "./components/Row";
 import ProjectCard from "./components/ProjectCard";
 import ProductsStrip from "./components/ProductsStrip";
 
+
 export default function Home() {
   return (
     <main className="page">
@@ -80,8 +81,8 @@ export default function Home() {
         </Row>
       </section>
 
-      {/* ✅ PRODUCTS (ADDED HERE) */}
-      {/* <ProductsStrip /> */}
+      {/* PRODUCTS */}
+      <ProductsStrip /> 
 
       {/* PROJECTS */}
       <section className="section">

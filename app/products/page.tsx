@@ -1,64 +1,38 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import productsDefault, { products as productsNamed } from "./productsData";
+import { products } from "./productsData";
 
-const safeProducts = Array.isArray(productsNamed)
-  ? productsNamed
-  : Array.isArray(productsDefault)
-  ? productsDefault
-  : [];
-
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const slug = String(params?.slug || "").trim().toLowerCase();
-
-  const product = safeProducts.find(
-    (p) => String(p.slug).trim().toLowerCase() === slug
-  );
-
-  if (!product) return notFound();
-
-  const img = product.imageSrc || "/products/placeholder.png";
-  const stripeUrl = product.stripeUrl || "#";
-
+export default function ProductsPage() {
   return (
-    <main className="page product-detail-page">
-      <Link className="back-link" href="/products">
-        ← Back to Products
-      </Link>
+    <main className="page">
+      <div className="page-head">
+        <h1>Products</h1>
+        <p className="muted">Choose a product and learn more before purchasing.</p>
+      </div>
 
-      <section className="buy-hero">
-        <div className="buy-left">
-          <div className="buy-iconWrap">
-            <img className="buy-icon" src={img} alt={product.name} />
-            {product.badge ? <span className="buy-badge">{product.badge}</span> : null}
-          </div>
-
-          <h1 className="buy-title">{product.name}</h1>
-          <p className="buy-sub">{product.description}</p>
-        </div>
-
-        <div className="buy-right">
-          <div className="buy-priceBox">
-            <div className="buy-prices">
-              <span className="buy-usd">{product.priceUsd}</span>
-              <span className="buy-or">or</span>
-              <span className="buy-alt">{product.priceAlt}</span>
+      <section className="products-grid">
+        {products.map((p) => (
+          <article key={p.slug} className="product-box">
+            <div className="product-media">
+              <img className="product-img" src={p.cardImage} alt={p.name} />
             </div>
 
-            <a
-              className={`buy-button ${stripeUrl === "#" ? "disabled" : ""}`}
-              href={stripeUrl === "#" ? undefined : stripeUrl}
-              target={stripeUrl === "#" ? undefined : "_blank"}
-              rel="noreferrer"
-            >
-              Purchase
-            </a>
-          </div>
-        </div>
-      </section>
+            <div className="product-body">
+              <h3 className="product-title">{p.name}</h3>
+              <p className="product-desc">{p.shortDescription}</p>
+            </div>
 
-      <section className="buy-imageLarge">
-        <img src={img} alt={`${product.name} preview`} />
+            <div className="product-footer">
+              <a className="btn btn-robux" href={p.robloxGameUrl} target="_blank" rel="noreferrer">
+                <img className="robux-icon" src="/robux.png" alt="Robux" />
+                {p.robuxPrice}
+              </a>
+
+              <Link className="btn btn-ghost" href={`/products/${p.slug}`}>
+                Learn more
+              </Link>
+            </div>
+          </article>
+        ))}
       </section>
     </main>
   );
