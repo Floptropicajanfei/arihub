@@ -1151,15 +1151,15 @@ body {
   inset: 0;
   z-index: 99999;
 
+  display: grid !important;
+  place-items: center !important;
+
   background: transparent;
 }
 
 /* CENTERED CARD */
 .zoom-panel {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
 
   width: 75vw;
   max-width: 1100px;
@@ -1173,6 +1173,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  margin: 0 !important;
 
   animation: zoomIn 0.25s ease-out forwards;
 }
@@ -1221,11 +1223,11 @@ body {
 /* ANIMATIONS */
 @keyframes zoomIn {
   from {
-    transform: translate(-50%, -50%) scale(0.95);
+    transform: scale(0.95);
     opacity: 0;
   }
   to {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 }
