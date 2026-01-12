@@ -2,13 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products } from "../productsData";
 
-export default function ProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function ProductPage({ params }: { params: { slug: string } }) {
+  const slug = String(params.slug || "").trim().toLowerCase();
+
   const product = products.find(
-    (p) => p.slug === params.slug
+    (p) => p.slug.trim().toLowerCase() === slug
   );
 
   if (!product) return notFound();
@@ -25,22 +23,17 @@ export default function ProductPage({
         style={{ width: "100%", borderRadius: 20 }}
       />
 
-      <p>{product.description}</p>
-
-      {product.galleryImages?.length && (
-        <div style={{ display: "grid", gap: 16 }}>
-          {product.galleryImages.map((img, i) => (
-            <img key={i} src={img} alt="" />
-          ))}
-        </div>
-      )}
+      <p style={{ marginTop: 12 }}>{product.description}</p>
 
       <a
         href={product.robloxGameUrl}
         target="_blank"
         rel="noreferrer"
+        className="btn btn-robux"
+        style={{ marginTop: 16, display: "inline-flex" }}
       >
-        Buy for {product.robuxPrice} Robux
+        <img className="robux-icon" src="/robux.png" alt="Robux" />
+        {product.robuxPrice}
       </a>
     </main>
   );
