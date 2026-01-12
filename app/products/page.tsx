@@ -10,7 +10,7 @@ export default function ProductsPage() {
 
       <section className="products-grid">
         {products.map((p) => (
-          <ProductCard key={p.slug} product={p} />
+          <ProductCard key={p.id} product={p} />
         ))}
       </section>
     </main>

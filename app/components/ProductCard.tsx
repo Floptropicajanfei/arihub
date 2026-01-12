@@ -1,83 +1,58 @@
+// app/components/ProductCard.tsx
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-
-type Product = {
-  id: string;
-  slug: string;
-  name: string;
-
-  pageDescription: string;
-  shortDescription?: string;
-
-  cardImages: string[];
-
-  robuxPrice: number;
-  robloxGameUrl: string;
-};
-
-function clampIndex(i: number, len: number) {
-  if (len <= 0) return 0;
-  return (i % len + len) % len;
-}
+import type { Product } from "@/app/lib/productsData";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const images = useMemo(() => product.cardImages ?? [], [product.cardImages]);
-  const hasMany = images.length > 1;
+  const images = useMemo(() => {
+    const list = product.cardImages?.length ? product.cardImages : [];
+    return list;
+  }, [product.cardImages]);
 
   const [index, setIndex] = useState(0);
 
-  // direction for slide animation
-  const [dir, setDir] = useState<"left" | "right">("right");
-  const [animKey, setAnimKey] = useState(0);
-
-  // zoom modal
   const [zoomOpen, setZoomOpen] = useState(false);
   const [zoomClosing, setZoomClosing] = useState(false);
 
   const autoplayRef = useRef<number | null>(null);
+  const hasMany = images.length > 1;
 
-  const go = (nextIndex: number, direction: "left" | "right") => {
+  const next = () => {
     if (!images.length) return;
-    setDir(direction);
-    setIndex(clampIndex(nextIndex, images.length));
-    setAnimKey((k) => k + 1);
+    setIndex((i) => (i + 1) % images.length);
   };
 
-  const next = () => go(index + 1, "right");
-  const prev = () => go(index - 1, "left");
+  const prev = () => {
+    if (!images.length) return;
+    setIndex((i) => (i - 1 + images.length) % images.length);
+  };
 
-  // autoplay (pause when zoom open)
   useEffect(() => {
     if (!hasMany || zoomOpen) return;
 
     autoplayRef.current = window.setInterval(() => {
-      // setDir needs to be "right" for autoplay
-      setDir("right");
-      setIndex((i) => clampIndex(i + 1, images.length));
-      setAnimKey((k) => k + 1);
+      next();
     }, 4500);
 
     return () => {
       if (autoplayRef.current) window.clearInterval(autoplayRef.current);
       autoplayRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMany, zoomOpen, images.length]);
 
-  // keyboard controls when zoomed
   useEffect(() => {
     if (!zoomOpen) return;
-
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeZoom();
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     };
-
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zoomOpen, index, images.length]);
+  }, [zoomOpen, images.length]);
 
   const openZoom = () => {
     if (!images.length) return;
@@ -96,7 +71,6 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <>
       <article className="product-box">
-        {/* IMAGE */}
         <div className="product-media">
           {images.length ? (
             <>
@@ -107,8 +81,8 @@ export default function ProductCard({ product }: { product: Product }) {
                 aria-label="Open image"
               >
                 <img
-                  key={`${animKey}-${images[index]}`}
-                  className={`product-img slide-${dir}`}
+                  key={images[index]}
+                  className="product-img"
                   src={images[index]}
                   alt={product.name}
                 />
@@ -120,26 +94,24 @@ export default function ProductCard({ product }: { product: Product }) {
                     type="button"
                     className="arrow arrow-left"
                     onClick={(e) => {
-                      e.preventDefault();
                       e.stopPropagation();
                       prev();
                     }}
                     aria-label="Previous image"
                   >
-                    <img src="/arrowleft.png" alt="" draggable={false} />
+                    <img src="/arrowleft.png" alt="" />
                   </button>
 
                   <button
                     type="button"
                     className="arrow arrow-right"
                     onClick={(e) => {
-                      e.preventDefault();
                       e.stopPropagation();
                       next();
                     }}
                     aria-label="Next image"
                   >
-                    <img src="/arrowright.png" alt="" draggable={false} />
+                    <img src="/arrowright.png" alt="" />
                   </button>
                 </>
               )}
@@ -149,18 +121,14 @@ export default function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* TEXT */}
         <div className="product-body">
           <h3 className="product-title">{product.name}</h3>
-
-          <p className="product-page-desc">{product.pageDescription}</p>
-
-          {product.shortDescription ? (
-            <p className="product-desc">{product.shortDescription}</p>
+          <p className="product-desc">{product.shortDescription}</p>
+          {product.pageDescription ? (
+            <p className="product-desc muted">{product.pageDescription}</p>
           ) : null}
         </div>
 
-        {/* FOOTER */}
         <div className="product-footer">
           <a
             className="btn btn-buy"
@@ -174,7 +142,6 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </article>
 
-      {/* ZOOM */}
       {zoomOpen && (
         <div
           className={`zoom-backdrop ${zoomClosing ? "zoom-out" : "zoom-in"}`}
@@ -184,12 +151,7 @@ export default function ProductCard({ product }: { product: Product }) {
         >
           <div className={`zoom-panel ${zoomClosing ? "zoom-out" : "zoom-in"}`}>
             <div className="zoom-media">
-              <img
-                key={`${animKey}-zoom-${images[index]}`}
-                className={`zoom-img slide-${dir}`}
-                src={images[index]}
-                alt={product.name}
-              />
+              <img className="zoom-img" src={images[index]} alt={product.name} />
 
               {hasMany && (
                 <>
@@ -199,16 +161,15 @@ export default function ProductCard({ product }: { product: Product }) {
                     onClick={prev}
                     aria-label="Previous image"
                   >
-                    <img src="/arrowleft.png" alt="" draggable={false} />
+                    <img src="/arrowleft.png" alt="" />
                   </button>
-
                   <button
                     type="button"
                     className="zoom-arrow zoom-right"
                     onClick={next}
                     aria-label="Next image"
                   >
-                    <img src="/arrowright.png" alt="" draggable={false} />
+                    <img src="/arrowright.png" alt="" />
                   </button>
                 </>
               )}

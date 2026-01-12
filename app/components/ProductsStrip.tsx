@@ -17,7 +17,7 @@ export default function ProductsStrip() {
 
       <div className="products-grid">
         {top.map((p) => (
-          <ProductCard key={p.slug} product={p} />
+          <ProductCard key={p.id} product={p} />
         ))}
       </div>
     </section>
