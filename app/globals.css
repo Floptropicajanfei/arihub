@@ -1234,3 +1234,43 @@ body {
 
 .zoom-in { animation: zoomFadeIn 220ms ease-out both; }
 .zoom-out { animation: zoomFadeOut 220ms ease-in both; }
+/* globals.css (append) */
+
+/* center the zoom panel perfectly */
+.zoom-backdrop{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* keep panel centered + nice size */
+.zoom-panel{
+  width: min(1180px, calc(100vw - 56px));
+  height: min(760px, calc(100vh - 120px));
+}
+
+/* put X inside the image/panel (top-right) */
+.zoom-close{
+  position:absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10002;
+}
+
+/* ensure close button is positioned relative to panel */
+.zoom-panel{ position: relative; }
+
+/* ensure zoom image is centered within panel */
+.zoom-media{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.zoom-img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
