@@ -1274,31 +1274,36 @@ body {
   height: auto;
   object-fit: contain;
 }
-/* ================= ABSOLUTE HARD CENTER FIX ================= */
+/* ========= FORCE DEAD-CENTER, NO EXCEPTIONS ========= */
 
 /* FULLSCREEN OVERLAY */
 .zoom-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
 
   width: 100vw;
   height: 100vh;
 
   z-index: 999999;
 
-  /* HARD FORCE CENTER */
-  display: grid;
-  place-items: center;
+  /* HARD CENTER */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background: transparent;
+
   margin: 0;
   padding: 0;
 }
 
-/* IMAGE CONTAINER */
+/* PANEL */
 .zoom-panel {
-  position: relative;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   width: 90vw;
   max-width: 1200px;
@@ -1306,23 +1311,25 @@ body {
   height: 80vh;
   max-height: 800px;
 
-  display: grid;
-  place-items: center;
-
   border-radius: 24px;
   overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* IMAGE WRAPPER */
+/* MEDIA WRAPPER */
 .zoom-media {
   width: 100%;
   height: 100%;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* IMAGE ITSELF */
+/* IMAGE */
 .zoom-img {
   max-width: 100%;
   max-height: 100%;
@@ -1339,15 +1346,15 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 5;
+  z-index: 10;
 }
 
 .zoom-left {
-  left: 16px;
+  left: 20px;
 }
 
 .zoom-right {
-  right: 16px;
+  right: 20px;
 }
 
 /* CLOSE BUTTON */
@@ -1355,5 +1362,5 @@ body {
   position: absolute;
   top: 16px;
   right: 16px;
-  z-index: 6;
+  z-index: 12;
 }
