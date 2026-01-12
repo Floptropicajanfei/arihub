@@ -7,30 +7,56 @@ type Product = {
   slug: string;
   name: string;
   shortDescription: string;
-  cardImages?: string[]; // <-- use this for slideshow on cards
-  cardImage?: string;    // fallback
+
+  // Any of these may exist depending on your data:
+  cardImages?: string[];
+  galleryImages?: string[];
+  cardImage?: string;
+  heroImage?: string;
+
   robuxPrice: number;
   robloxGameUrl: string;
 };
 
 export default function ProductCard({ product }: { product: Product }) {
+  // ✅ Very defensive: works with any of the common fields
   const images = useMemo(() => {
-    const list = product.cardImages?.length
-      ? product.cardImages
-      : product.cardImage
-      ? [product.cardImage]
-      : [];
-    return list;
-  }, [product.cardImages, product.cardImage]);
+    const p: any = product;
+
+    const fromCardImages =
+      Array.isArray(p.cardImages) && p.cardImages.length ? p.cardImages : null;
+
+    const fromGallery =
+      Array.isArray(p.galleryImages) && p.galleryImages.length
+        ? p.galleryImages
+        : null;
+
+    const fromSingleCard = typeof p.cardImage === "string" && p.cardImage
+      ? [p.cardImage]
+      : null;
+
+    const fromHero = typeof p.heroImage === "string" && p.heroImage
+      ? [p.heroImage]
+      : null;
+
+    return fromCardImages ?? fromGallery ?? fromSingleCard ?? fromHero ?? [];
+  }, [product]);
 
   const [index, setIndex] = useState(0);
 
-  // Zoom modal state + fade out
+  // ✅ Reset index if images change (prevents out-of-range blank)
+  useEffect(() => {
+    setIndex(0);
+  }, [product.id, images.length]);
+
+  // Zoom modal state + fade-out
   const [zoomOpen, setZoomOpen] = useState(false);
   const [zoomClosing, setZoomClosing] = useState(false);
 
-  const autoplayRef = useRef<number | null>(null);
+  // Hover pause
+  const [hovered, setHovered] = useState(false);
 
+  const intervalRef = useRef<number | null>(null);
   const hasMany = images.length > 1;
 
   const next = () => {
@@ -43,29 +69,42 @@ export default function ProductCard({ product }: { product: Product }) {
     setIndex((i) => (i - 1 + images.length) % images.length);
   };
 
-  // Autoplay (paused when zoom is open)
+  // ✅ Autoplay (pauses on hover OR zoom)
   useEffect(() => {
-    if (!hasMany || zoomOpen) return;
+    if (!hasMany) return;
+    if (zoomOpen) return;
+    if (hovered) return;
 
-    autoplayRef.current = window.setInterval(() => {
+    // clear old interval
+    if (intervalRef.current) {
+      window.clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    intervalRef.current = window.setInterval(() => {
+      // use functional state update indirectly via next()
       next();
     }, 4500);
 
     return () => {
-      if (autoplayRef.current) window.clearInterval(autoplayRef.current);
-      autoplayRef.current = null;
+      if (intervalRef.current) {
+        window.clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMany, zoomOpen, images.length]);
+  }, [hasMany, zoomOpen, hovered, images.length]);
 
   // Keyboard controls when zoomed
   useEffect(() => {
     if (!zoomOpen) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeZoom();
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,7 +117,6 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   const closeZoom = () => {
-    // fade-out before unmounting
     setZoomClosing(true);
     window.setTimeout(() => {
       setZoomOpen(false);
@@ -88,7 +126,11 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <>
-      <article className="product-box">
+      <article
+        className="product-box"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
         {/* IMAGE */}
         <div className="product-media">
           {images.length ? (
@@ -99,9 +141,8 @@ export default function ProductCard({ product }: { product: Product }) {
                 onClick={openZoom}
                 aria-label="Open image"
               >
-                {/* sliding image */}
                 <img
-                  key={images[index]} // key triggers re-render for animation
+                  key={`${product.id}-${images[index]}`} // ensures animation
                   className="product-img"
                   src={images[index]}
                   alt={product.name}
@@ -114,6 +155,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     type="button"
                     className="arrow arrow-left"
                     onClick={(e) => {
+                      e.preventDefault();
                       e.stopPropagation();
                       prev();
                     }}
@@ -126,6 +168,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     type="button"
                     className="arrow arrow-right"
                     onClick={(e) => {
+                      e.preventDefault();
                       e.stopPropagation();
                       next();
                     }}
@@ -166,7 +209,6 @@ export default function ProductCard({ product }: { product: Product }) {
         <div
           className={`zoom-backdrop ${zoomClosing ? "zoom-out" : "zoom-in"}`}
           onMouseDown={(e) => {
-            // click outside closes
             if (e.target === e.currentTarget) closeZoom();
           }}
         >
@@ -184,6 +226,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   >
                     <img src="/arrowleft.png" alt="" />
                   </button>
+
                   <button
                     type="button"
                     className="zoom-arrow zoom-right"

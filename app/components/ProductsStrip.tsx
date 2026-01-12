@@ -7,12 +7,13 @@ export default function ProductsStrip() {
 
   return (
     <section className="section">
-      <div className="section-row">
-        <h2>Products</h2>
-        <Link className="see-all" href="/products">
-          See all
-        </Link>
-      </div>
+      <div className="section-row products-head">
+      <h2>Products</h2>
+      <Link className="see-all" href="/products">
+       See all →
+      </Link>
+       </div>
+
 
       <div className="products-grid">
         {top.map((p) => (
