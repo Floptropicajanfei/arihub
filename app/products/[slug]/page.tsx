@@ -1,20 +1,22 @@
-import { notFound } from "next/navigation";
 import { products } from "../productsData";
+import { notFound } from "next/navigation";
 
-export const dynamic = "force-static";
-export const revalidate = false;
-
-export function generateStaticParams() {
-  return products.map((p) => ({
-    slug: p.slug,
-  }));
-}
+/**
+ * 🔥 FORCE RUNTIME RENDERING
+ * This disables all static optimisation and caching.
+ */
+export const dynamic = "force-dynamic";
 
 export default function ProductPage({
   params,
 }: {
   params: { slug: string };
 }) {
+  // Hard guard — if slug is missing, fail loudly
+  if (!params || !params.slug) {
+    notFound();
+  }
+
   const product = products.find(
     (p) => p.slug === params.slug
   );
@@ -24,7 +26,8 @@ export default function ProductPage({
   }
 
   return (
-    <main className="page">
+    <main className="page" style={{ paddingBottom: 80 }}>
+      {/* HERO */}
       <section style={{ marginBottom: 64 }}>
         <img
           src={product.heroImage}
@@ -36,30 +39,35 @@ export default function ProductPage({
           }}
         />
 
-        <h1>{product.name}</h1>
+        <h1 style={{ marginBottom: 16 }}>{product.name}</h1>
 
-        <p style={{ maxWidth: 800, lineHeight: 1.7 }}>
+        <p
+          style={{
+            maxWidth: 800,
+            lineHeight: 1.7,
+            marginBottom: 32,
+          }}
+        >
           {product.description}
         </p>
 
-        <div style={{ marginTop: 32 }}>
-          <a
-            href={product.robloxGameUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-robux"
-          >
-            <img
-              src="/robux.png"
-              alt="Robux"
-              style={{ height: 20, marginRight: 8 }}
-            />
-            Buy for {product.robuxPrice}
-          </a>
-        </div>
+        <a
+          href={product.robloxGameUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="btn btn-robux"
+        >
+          <img
+            src="/robux.png"
+            alt="Robux"
+            style={{ height: 20, marginRight: 8 }}
+          />
+          Buy for {product.robuxPrice}
+        </a>
       </section>
 
-      {product.galleryImages && (
+      {/* GALLERY */}
+      {product.galleryImages?.length ? (
         <section
           style={{
             display: "grid",
@@ -80,7 +88,7 @@ export default function ProductPage({
             />
           ))}
         </section>
-      )}
+      ) : null}
     </main>
   );
 }
