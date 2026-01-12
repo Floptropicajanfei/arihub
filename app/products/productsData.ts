@@ -4,14 +4,14 @@ export type Product = {
   // Card (landing page)
   name: string;
   shortDescription: string;
-  cardImage: string; // small/presentation image for card
+  cardImage: string;
 
-  // Detail page
-  description: string; // long description
-  heroImage: string; // big image at top
-  galleryImages?: string[]; // extra presentation images
+  // Full page
+  description: string;
+  heroImage: string;
+  galleryImages?: string[];
 
-  // Robux purchase
+  // Robux
   robuxPrice: number;
   robloxGameUrl: string;
 };
@@ -20,18 +20,22 @@ export const products: Product[] = [
   {
     slug: "aritest",
     name: "AriTest Product",
-    shortDescription: "Small description for the landing page card goes here.",
+    shortDescription:
+      "Small description for the product card on the landing page.",
+
     cardImage: "/products/aritest.png",
 
     description:
-      "Full product description goes here. You can write multiple sentences and explain everything about the product.",
+      "This is the full product description. You can write multiple paragraphs here explaining what the product does, what is included, and why someone should buy it.",
+
     heroImage: "/products/aritest-hero.png",
-    galleryImages: ["/products/aritest-1.png", "/products/aritest-2.png"],
+
+    galleryImages: [
+      "/products/aritest-1.png",
+      "/products/aritest-2.png",
+    ],
 
     robuxPrice: 300,
     robloxGameUrl: "https://www.roblox.com/games/REPLACE_ME",
   },
-
-  // Add more:
-  // { slug: "product2", ... }
 ];
