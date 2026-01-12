@@ -5,29 +5,33 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { Product } from "@/app/lib/productsData";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const images = useMemo(() => {
-    const list = product.cardImages?.length ? product.cardImages : [];
-    return list;
-  }, [product.cardImages]);
+  const images = useMemo(() => product.cardImages ?? [], [product.cardImages]);
+  const hasMany = images.length > 1;
 
   const [index, setIndex] = useState(0);
 
+  // zoom modal
   const [zoomOpen, setZoomOpen] = useState(false);
   const [zoomClosing, setZoomClosing] = useState(false);
 
+  // slide direction for animations
+  const [dir, setDir] = useState<"next" | "prev">("next");
+
   const autoplayRef = useRef<number | null>(null);
-  const hasMany = images.length > 1;
 
   const next = () => {
     if (!images.length) return;
+    setDir("next");
     setIndex((i) => (i + 1) % images.length);
   };
 
   const prev = () => {
     if (!images.length) return;
+    setDir("prev");
     setIndex((i) => (i - 1 + images.length) % images.length);
   };
 
+  // autoplay (paused when zoom open)
   useEffect(() => {
     if (!hasMany || zoomOpen) return;
 
@@ -42,17 +46,30 @@ export default function ProductCard({ product }: { product: Product }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMany, zoomOpen, images.length]);
 
+  // keyboard controls in zoom
   useEffect(() => {
     if (!zoomOpen) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeZoom();
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoomOpen, images.length]);
+
+  // prevent background scroll when zoom open
+  useEffect(() => {
+    if (!zoomOpen) return;
+    const prevOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = prevOverflow;
+    };
+  }, [zoomOpen]);
 
   const openZoom = () => {
     if (!images.length) return;
@@ -65,7 +82,7 @@ export default function ProductCard({ product }: { product: Product }) {
     window.setTimeout(() => {
       setZoomOpen(false);
       setZoomClosing(false);
-    }, 180);
+    }, 220);
   };
 
   return (
@@ -81,8 +98,8 @@ export default function ProductCard({ product }: { product: Product }) {
                 aria-label="Open image"
               >
                 <img
-                  key={images[index]}
-                  className="product-img"
+                  key={`${images[index]}-${dir}`}
+                  className={`product-img slide-${dir}`}
                   src={images[index]}
                   alt={product.name}
                 />
@@ -148,10 +165,26 @@ export default function ProductCard({ product }: { product: Product }) {
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) closeZoom();
           }}
+          role="dialog"
+          aria-modal="true"
         >
+          <button
+            type="button"
+            className="zoom-close"
+            onClick={closeZoom}
+            aria-label="Close"
+          >
+            ×
+          </button>
+
           <div className={`zoom-panel ${zoomClosing ? "zoom-out" : "zoom-in"}`}>
             <div className="zoom-media">
-              <img className="zoom-img" src={images[index]} alt={product.name} />
+              <img
+                key={`${images[index]}-zoom-${dir}`}
+                className={`zoom-img slide-${dir}`}
+                src={images[index]}
+                alt={product.name}
+              />
 
               {hasMany && (
                 <>
