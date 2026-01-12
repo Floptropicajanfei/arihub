@@ -1100,32 +1100,42 @@ body {
   display:block;
 }
 
-/* ARROWS — always visible */
+/* ARROWS — NO CIRCLE, USE YOUR PNG ONLY */
 .arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
   z-index:5;
 
-  width:36px;
-  height:36px;
+  width:44px;           /* clickable area (not visible) */
+  height:44px;
+  padding:0;
   border:none;
-  border-radius:999px;
-  background:rgba(255,255,255,0.92);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  background:transparent;   /* removes circle */
+  border-radius:0;          /* removes rounding */
+  box-shadow:none;          /* removes shadow */
+  cursor:pointer;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
 }
 
 .arrow img{
-  width:16px;
-  height:16px;
+  width:28px;           /* your arrow image size */
+  height:28px;
+  display:block;
 }
 
-.arrow.left{ left:10px; }
-.arrow.right{ right:10px; }
+/* position */
+.arrow.left{ left:12px; }
+.arrow.right{ right:12px; }
+
+/* optional: subtle hover (no circle) */
+.arrow:hover{
+  opacity:0.85;
+}
+
 
 /* TEXT */
 .product-content{
@@ -1183,3 +1193,60 @@ body {
   transform: translateY(-2px);
   transition: transform 200ms ease;
 }
+/* LIGHTBOX (fade) */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background: rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  animation: lightboxFadeIn 180ms ease forwards;
+}
+
+@keyframes lightboxFadeIn{
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-panel{
+  position:relative;
+  width:min(980px, calc(100vw - 32px));
+  height:min(620px, calc(100vh - 120px));
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+
+  transform: translateY(6px);
+  animation: panelIn 200ms ease forwards;
+}
+
+@keyframes panelIn{
+  from { opacity:0; transform: translateY(10px) scale(0.98); }
+  to { opacity:1; transform: translateY(0px) scale(1); }
+}
+
+/* image area inside modal */
+.lightbox-image{
+  position:relative;
+  width:100%;
+  height:100%;
+  background:#f6f6f6;
+}
+
+/* close button */
+.lightbox-close{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:36px;
+  height:36px;
+  border:none;
+  background: rgba(255,255,255,0.85);
+  border-radius:12px;
+  cursor:pointer;
+}
+.lightbox-close:hover{ opacity:0.9; }

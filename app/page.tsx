@@ -4,11 +4,9 @@ import Row from "./components/Row";
 import ProjectCard from "./components/ProjectCard";
 import ProductsStrip from "./components/ProductsStrip";
 
-
 export default function Home() {
   return (
     <main className="page">
-
       {/* HERO (CENTERED TEXT) */}
       <section className="hero hero-centered">
         <h1>Hi, I’m Ari</h1>
@@ -60,11 +58,7 @@ export default function Home() {
           <CommissionCard
             title="Roblox Building"
             description="Full Roblox build package with custom made assets, scripts and builds."
-            items={[
-              "Roblox game",
-              "Models",
-              "Very detailed builds",
-            ]}
+            items={["Roblox game", "Models", "Very detailed builds"]}
             price="Starting at £49.99"
           />
 
@@ -81,8 +75,8 @@ export default function Home() {
         </Row>
       </section>
 
-      {/* PRODUCTS */}
-      <ProductsStrip /> 
+      {/* ✅ PRODUCTS (PUT BETWEEN COMMISSIONS AND PROJECTS) */}
+      <ProductsStrip />
 
       {/* PROJECTS */}
       <section className="section">
@@ -106,7 +100,6 @@ export default function Home() {
           />
         </Row>
       </section>
-
     </main>
   );
 }
