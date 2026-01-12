@@ -1236,90 +1236,41 @@ body {
 .zoom-out { animation: zoomFadeOut 220ms ease-in both; }
 /* globals.css (append) */
 
-/* center the zoom panel perfectly */
-.zoom-backdrop{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+/* ===== CLEAN, CENTERED, NOT FULLSCREEN ===== */
 
-/* keep panel centered + nice size */
-.zoom-panel{
-  width: min(1180px, calc(100vw - 56px));
-  height: min(760px, calc(100vh - 120px));
-}
-
-/* put X inside the image/panel (top-right) */
-.zoom-close{
-  position:absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 10002;
-}
-
-/* ensure close button is positioned relative to panel */
-.zoom-panel{ position: relative; }
-
-/* ensure zoom image is centered within panel */
-.zoom-media{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.zoom-img{
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-/* ========= FORCE DEAD-CENTER, NO EXCEPTIONS ========= */
-
-/* FULLSCREEN OVERLAY */
 .zoom-backdrop {
   position: fixed;
   inset: 0;
+  z-index: 99999;
 
-  width: 100vw;
-  height: 100vh;
-
-  z-index: 999999;
-
-  /* HARD CENTER */
   display: flex;
   align-items: center;
   justify-content: center;
 
   background: transparent;
-
-  margin: 0;
-  padding: 0;
 }
 
-/* PANEL */
+/* CENTERED CARD */
 .zoom-panel {
-  position: absolute;
+  position: relative;
 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 75vw;
+  max-width: 1100px;
 
-  width: 90vw;
-  max-width: 1200px;
+  height: 65vh;
+  max-height: 700px;
 
-  height: 80vh;
-  max-height: 800px;
-
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  animation: zoomIn 0.25s ease-out forwards;
 }
 
-/* MEDIA WRAPPER */
+/* IMAGE HOLDER */
 .zoom-media {
   width: 100%;
   height: 100%;
@@ -1333,12 +1284,7 @@ body {
 .zoom-img {
   max-width: 100%;
   max-height: 100%;
-
-  width: auto;
-  height: auto;
-
   object-fit: contain;
-  display: block;
 }
 
 /* ARROWS */
@@ -1346,21 +1292,33 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 5;
 }
 
 .zoom-left {
-  left: 20px;
+  left: 14px;
 }
 
 .zoom-right {
-  right: 20px;
+  right: 14px;
 }
 
-/* CLOSE BUTTON */
+/* CLOSE */
 .zoom-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 12;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+}
+
+/* ANIMATIONS */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
