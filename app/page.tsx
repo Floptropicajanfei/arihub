@@ -76,7 +76,7 @@ export default function Home() {
         </Row>
       </section>
 
-      {/* PRODUCTS (between commissions and projects) */}
+      {/* PRODUCTS STRIP */}
       <ProductsStrip />
 
       {/* PROJECTS */}
