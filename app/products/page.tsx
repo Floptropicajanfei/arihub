@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { products } from "./productsData";
+import { products } from "@/app/lib/productsData";
 
 export default function ProductsPage() {
   return (

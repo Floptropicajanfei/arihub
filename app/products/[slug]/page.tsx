@@ -1,10 +1,6 @@
-import { products } from "../productsData";
+import { products } from "@/app/lib/productsData";
 import { notFound } from "next/navigation";
 
-/**
- * 🔥 FORCE RUNTIME RENDERING
- * This disables all static optimisation and caching.
- */
 export const dynamic = "force-dynamic";
 
 export default function ProductPage({
@@ -12,8 +8,7 @@ export default function ProductPage({
 }: {
   params: { slug: string };
 }) {
-  // Hard guard — if slug is missing, fail loudly
-  if (!params || !params.slug) {
+  if (!params?.slug) {
     notFound();
   }
 
@@ -26,7 +21,7 @@ export default function ProductPage({
   }
 
   return (
-    <main className="page" style={{ paddingBottom: 80 }}>
+    <main className="page" style={{ paddingBottom: 96 }}>
       {/* HERO */}
       <section style={{ marginBottom: 64 }}>
         <img
@@ -34,17 +29,21 @@ export default function ProductPage({
           alt={product.name}
           style={{
             width: "100%",
+            maxHeight: 420,
+            objectFit: "cover",
             borderRadius: 24,
             marginBottom: 32,
           }}
         />
 
-        <h1 style={{ marginBottom: 16 }}>{product.name}</h1>
+        <h1 style={{ marginBottom: 16 }}>
+          {product.name}
+        </h1>
 
         <p
           style={{
-            maxWidth: 800,
-            lineHeight: 1.7,
+            maxWidth: 820,
+            lineHeight: 1.8,
             marginBottom: 32,
           }}
         >
