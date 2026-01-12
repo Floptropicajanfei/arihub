@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { products } from "../productsData";
 
+<p style={{ opacity: 0.6, fontSize: 12 }}>
+  BUILD: {process.env.VERCEL_GIT_COMMIT_SHA ?? "no-vercel-sha"}
+</p>
+
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const urlSlug = String(params?.slug ?? "");
 
