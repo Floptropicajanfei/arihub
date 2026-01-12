@@ -6,131 +6,152 @@ type Product = {
   id: string;
   slug: string;
   name: string;
-  description: string; // short description
-  images: string[];
+  shortDescription: string;
+  cardImages?: string[]; // <-- use this for slideshow on cards
+  cardImage?: string;    // fallback
   robuxPrice: number;
-  robloxUrl: string;
+  robloxGameUrl: string;
 };
 
 export default function ProductCard({ product }: { product: Product }) {
-  const images = useMemo(() => product.images || [], [product.images]);
+  const images = useMemo(() => {
+    const list = product.cardImages?.length
+      ? product.cardImages
+      : product.cardImage
+      ? [product.cardImage]
+      : [];
+    return list;
+  }, [product.cardImages, product.cardImage]);
+
   const [index, setIndex] = useState(0);
-  const [dir, setDir] = useState<(-1 | 1)>(1);
 
-  const hoveredRef = useRef(false);
+  // Zoom modal state + fade out
+  const [zoomOpen, setZoomOpen] = useState(false);
+  const [zoomClosing, setZoomClosing] = useState(false);
 
-  // Lightbox
-  const [open, setOpen] = useState(false);
+  const autoplayRef = useRef<number | null>(null);
 
-  const clampIndex = (i: number) => {
-    if (!images.length) return 0;
-    const m = images.length;
-    return ((i % m) + m) % m;
+  const hasMany = images.length > 1;
+
+  const next = () => {
+    if (!images.length) return;
+    setIndex((i) => (i + 1) % images.length);
   };
 
-  const go = (nextIndex: number, direction: -1 | 1) => {
-    if (images.length <= 1) return;
-    setDir(direction);
-    setIndex(clampIndex(nextIndex));
+  const prev = () => {
+    if (!images.length) return;
+    setIndex((i) => (i - 1 + images.length) % images.length);
   };
 
-  const prev = () => go(index - 1, -1);
-  const next = () => go(index + 1, 1);
-
-  // ✅ autoplay (PAUSES on hover OR when lightbox is open)
+  // Autoplay (paused when zoom is open)
   useEffect(() => {
-    if (images.length <= 1) return;
-    if (open) return;
+    if (!hasMany || zoomOpen) return;
 
-    const t = setInterval(() => {
-      if (hoveredRef.current) return;
-      go(index + 1, 1);
-    }, 3500);
+    autoplayRef.current = window.setInterval(() => {
+      next();
+    }, 4500);
 
-    return () => clearInterval(t);
-  }, [index, images.length, open]);
+    return () => {
+      if (autoplayRef.current) window.clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasMany, zoomOpen, images.length]);
 
-  // ESC to close lightbox
+  // Keyboard controls when zoomed
   useEffect(() => {
-    if (!open) return;
+    if (!zoomOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-      if (e.key === "ArrowLeft") prev();
+      if (e.key === "Escape") closeZoom();
       if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, index]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoomOpen, images.length]);
+
+  const openZoom = () => {
+    if (!images.length) return;
+    setZoomOpen(true);
+    setZoomClosing(false);
+  };
+
+  const closeZoom = () => {
+    // fade-out before unmounting
+    setZoomClosing(true);
+    window.setTimeout(() => {
+      setZoomOpen(false);
+      setZoomClosing(false);
+    }, 180);
+  };
 
   return (
     <>
-      <article
-        className="product-box"
-        onMouseEnter={() => (hoveredRef.current = true)}
-        onMouseLeave={() => (hoveredRef.current = false)}
-      >
-        {/* MEDIA */}
-        <div
-          className="product-image"
-          role="button"
-          tabIndex={0}
-          onClick={() => setOpen(true)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") setOpen(true);
-          }}
-          aria-label={`Open ${product.name} images`}
-        >
-          <div
-            className={`product-track ${dir === 1 ? "dir-right" : "dir-left"}`}
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {images.map((src, i) => (
-              <div className="product-slide" key={`${src}-${i}`}>
-                <img src={src} alt={product.name} />
-              </div>
-            ))}
-          </div>
-
-          {images.length > 1 && (
+      <article className="product-box">
+        {/* IMAGE */}
+        <div className="product-media">
+          {images.length ? (
             <>
               <button
-                className="arrow left"
                 type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  prev();
-                }}
-                aria-label="Previous image"
+                className="product-media-click"
+                onClick={openZoom}
+                aria-label="Open image"
               >
-                <img src="/arrowleft.png" alt="" />
+                {/* sliding image */}
+                <img
+                  key={images[index]} // key triggers re-render for animation
+                  className="product-img"
+                  src={images[index]}
+                  alt={product.name}
+                />
               </button>
 
-              <button
-                className="arrow right"
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  next();
-                }}
-                aria-label="Next image"
-              >
-                <img src="/arrowright.png" alt="" />
-              </button>
+              {hasMany && (
+                <>
+                  <button
+                    type="button"
+                    className="arrow arrow-left"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prev();
+                    }}
+                    aria-label="Previous image"
+                  >
+                    <img src="/arrowleft.png" alt="" />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="arrow arrow-right"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      next();
+                    }}
+                    aria-label="Next image"
+                  >
+                    <img src="/arrowright.png" alt="" />
+                  </button>
+                </>
+              )}
             </>
+          ) : (
+            <div className="product-img-missing">No image</div>
           )}
         </div>
 
         {/* TEXT */}
-        <div className="product-content">
-          <h3>{product.name}</h3>
-          <p className="muted">{product.description}</p>
+        <div className="product-body">
+          <h3 className="product-title">{product.name}</h3>
+          <p className="product-desc">{product.shortDescription}</p>
         </div>
 
-        {/* BUY */}
+        {/* FOOTER (buy button) */}
         <div className="product-footer">
           <a
-            className="btn btn-white"
-            href={product.robloxUrl}
+            className="btn btn-buy"
+            href={product.robloxGameUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -140,45 +161,40 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </article>
 
-      {/* ✅ LIGHTBOX */}
-      {open && (
+      {/* ZOOM MODAL */}
+      {zoomOpen && (
         <div
-          className="lightbox"
+          className={`zoom-backdrop ${zoomClosing ? "zoom-out" : "zoom-in"}`}
           onMouseDown={(e) => {
             // click outside closes
-            if (e.target === e.currentTarget) setOpen(false);
+            if (e.target === e.currentTarget) closeZoom();
           }}
-          aria-modal="true"
-          role="dialog"
         >
-          <div className="lightbox-panel">
-            <div className="lightbox-image">
-              <div
-                className={`product-track ${dir === 1 ? "dir-right" : "dir-left"}`}
-                style={{ transform: `translateX(-${index * 100}%)` }}
-              >
-                {images.map((src, i) => (
-                  <div className="product-slide" key={`lb-${src}-${i}`}>
-                    <img src={src} alt={product.name} />
-                  </div>
-                ))}
-              </div>
+          <div className={`zoom-panel ${zoomClosing ? "zoom-out" : "zoom-in"}`}>
+            <div className="zoom-media">
+              <img className="zoom-img" src={images[index]} alt={product.name} />
 
-              {images.length > 1 && (
+              {hasMany && (
                 <>
-                  <button className="arrow left" type="button" onClick={prev} aria-label="Previous image">
+                  <button
+                    type="button"
+                    className="zoom-arrow zoom-left"
+                    onClick={prev}
+                    aria-label="Previous image"
+                  >
                     <img src="/arrowleft.png" alt="" />
                   </button>
-                  <button className="arrow right" type="button" onClick={next} aria-label="Next image">
+                  <button
+                    type="button"
+                    className="zoom-arrow zoom-right"
+                    onClick={next}
+                    aria-label="Next image"
+                  >
                     <img src="/arrowright.png" alt="" />
                   </button>
                 </>
               )}
             </div>
-
-            <button className="lightbox-close" type="button" onClick={() => setOpen(false)} aria-label="Close">
-              ✕
-            </button>
           </div>
         </div>
       )}
