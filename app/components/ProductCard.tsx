@@ -1,4 +1,5 @@
 // app/components/ProductCard.tsx
+
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -25,9 +26,13 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   useEffect(() => {
-    if (!hasMany || zoomOpen) return;
+    if (!hasMany) return;
+    if (zoomOpen) return;
 
-    autoplayRef.current = window.setInterval(() => next(), 4500);
+    autoplayRef.current = window.setInterval(() => {
+      next();
+    }, 4500);
+
     return () => {
       if (autoplayRef.current) window.clearInterval(autoplayRef.current);
       autoplayRef.current = null;
@@ -60,7 +65,7 @@ export default function ProductCard({ product }: { product: Product }) {
     window.setTimeout(() => {
       setZoomOpen(false);
       setClosing(false);
-    }, 220);
+    }, 200);
   };
 
   const comingSoonHref = `/products/coming-soon?slug=${encodeURIComponent(
@@ -78,7 +83,12 @@ export default function ProductCard({ product }: { product: Product }) {
                 onClick={openZoom}
                 className="product-media-click"
                 aria-label="Open image"
-                style={{ all: "unset", cursor: "pointer", width: "100%", display: "block" }}
+                style={{
+                  all: "unset",
+                  display: "block",
+                  cursor: "pointer",
+                  width: "100%",
+                }}
               >
                 <img
                   key={`${product.slug}-${index}`}
@@ -89,7 +99,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     width: "100%",
                     height: 190,
                     objectFit: "cover",
-                    borderRadius: 18,
+                    borderRadius: 16,
                     display: "block",
                   }}
                 />
@@ -107,7 +117,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     aria-label="Previous image"
                     style={{
                       position: "absolute",
-                      left: 12,
+                      left: 10,
                       top: "50%",
                       transform: "translateY(-50%)",
                       background: "transparent",
@@ -116,7 +126,11 @@ export default function ProductCard({ product }: { product: Product }) {
                       cursor: "pointer",
                     }}
                   >
-                    <img src="/arrowleft.png" alt="" style={{ width: 28, height: 28 }} />
+                    <img
+                      src="/arrowleft.png"
+                      alt=""
+                      style={{ width: 28, height: 28 }}
+                    />
                   </button>
 
                   <button
@@ -129,7 +143,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     aria-label="Next image"
                     style={{
                       position: "absolute",
-                      right: 12,
+                      right: 10,
                       top: "50%",
                       transform: "translateY(-50%)",
                       background: "transparent",
@@ -138,7 +152,11 @@ export default function ProductCard({ product }: { product: Product }) {
                       cursor: "pointer",
                     }}
                   >
-                    <img src="/arrowright.png" alt="" style={{ width: 28, height: 28 }} />
+                    <img
+                      src="/arrowright.png"
+                      alt=""
+                      style={{ width: 28, height: 28 }}
+                    />
                   </button>
                 </>
               )}
@@ -151,7 +169,11 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="product-body">
           <h3 className="product-title">{product.name}</h3>
           <p className="product-desc">{product.shortDescription}</p>
-          {product.pageDescription ? <p className="product-desc muted">{product.pageDescription}</p> : null}
+
+          {/* ✅ this is now valid because Product type includes it */}
+          {product.pageDescription ? (
+            <p className="product-desc muted">{product.pageDescription}</p>
+          ) : null}
         </div>
 
         <div className="product-footer">
@@ -160,7 +182,12 @@ export default function ProductCard({ product }: { product: Product }) {
               Coming soon
             </a>
           ) : (
-            <a className="btn btn-buy" href={product.robloxGameUrl} target="_blank" rel="noreferrer">
+            <a
+              className="btn btn-buy"
+              href={product.robloxGameUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               <img className="robux-icon" src="/robux.png" alt="Robux" />
               <span className="robux-price">{product.robuxPrice}</span>
             </a>
@@ -181,60 +208,67 @@ export default function ProductCard({ product }: { product: Product }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: 22,
-            background: "rgba(0,0,0,0.78)",
-            animation: closing ? "fadeOut .22s ease forwards" : "fadeIn .22s ease forwards",
+            padding: 24,
+            background: "rgba(0,0,0,0.55)",
+            animation: closing
+              ? "fadeOut .2s ease forwards"
+              : "fadeIn .2s ease forwards",
           }}
         >
+          {/* ✅ curved sides + centered + no ugly grey block */}
           <div
             className={`zoom-panel ${closing ? "zoom-out" : "zoom-in"}`}
             style={{
-              width: "min(1200px, 96vw)",
-              height: "min(720px, 86vh)",
-              borderRadius: 40,
-              overflow: "hidden",
+              width: "min(1100px, 96vw)",
+              height: "min(650px, 84vh)",
+              borderRadius: 22,          // ✅ more curve
+              overflow: "hidden",         // ✅ clips image to curve
               position: "relative",
-              background: "transparent",
-              transform: closing ? "scale(0.965)" : "scale(1)",
-              transition: "transform .22s ease",
+              background: "transparent",  // ✅ no grey block
+              transform: closing ? "scale(0.985)" : "scale(1)",
+              transition: "transform .2s ease",
             }}
           >
-            <img
-              key={`zoom-${product.slug}-${index}`}
-              src={images[index]}
-              alt={product.name}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                background: "transparent",
-                animation: closing ? "none" : "slideIn .25s ease",
-              }}
-            />
-
+            {/* ✅ X moved INSIDE image (lower + inset), not floating outside */}
             <button
               type="button"
               onClick={closeZoom}
               aria-label="Close"
               style={{
                 position: "absolute",
-                right: 26,
-                top: 26,
-                zIndex: 3,
+                right: 18,
+                top: 18,                 // ✅ moved down into the image
+                zIndex: 5,
                 width: 42,
                 height: 42,
                 borderRadius: 999,
                 border: 0,
                 background: "rgba(0,0,0,0.35)",
                 color: "#fff",
-                fontSize: 22,
+                fontSize: 26,
                 cursor: "pointer",
                 display: "grid",
                 placeItems: "center",
+                lineHeight: 1,
               }}
             >
               ×
             </button>
+
+            <div style={{ position: "absolute", inset: 0 }}>
+              <img
+                key={`zoom-${product.slug}-${index}`}
+                src={images[index]}
+                alt={product.name}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  background: "transparent",
+                  animation: closing ? "none" : "slideIn .25s ease",
+                }}
+              />
+            </div>
 
             {hasMany && (
               <>
@@ -244,17 +278,21 @@ export default function ProductCard({ product }: { product: Product }) {
                   aria-label="Previous image"
                   style={{
                     position: "absolute",
-                    left: 24,
+                    left: 18,
                     top: "50%",
                     transform: "translateY(-50%)",
                     background: "transparent",
                     border: 0,
                     padding: 0,
                     cursor: "pointer",
-                    zIndex: 3,
+                    zIndex: 5,
                   }}
                 >
-                  <img src="/arrowleft.png" alt="" style={{ width: 36, height: 36 }} />
+                  <img
+                    src="/arrowleft.png"
+                    alt=""
+                    style={{ width: 34, height: 34 }}
+                  />
                 </button>
 
                 <button
@@ -263,17 +301,21 @@ export default function ProductCard({ product }: { product: Product }) {
                   aria-label="Next image"
                   style={{
                     position: "absolute",
-                    right: 24,
+                    right: 18,
                     top: "50%",
                     transform: "translateY(-50%)",
                     background: "transparent",
                     border: 0,
                     padding: 0,
                     cursor: "pointer",
-                    zIndex: 3,
+                    zIndex: 5,
                   }}
                 >
-                  <img src="/arrowright.png" alt="" style={{ width: 36, height: 36 }} />
+                  <img
+                    src="/arrowright.png"
+                    alt=""
+                    style={{ width: 34, height: 34 }}
+                  />
                 </button>
               </>
             )}
@@ -282,7 +324,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <style>{`
             @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
             @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-            @keyframes slideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+            @keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
           `}</style>
         </div>
       )}

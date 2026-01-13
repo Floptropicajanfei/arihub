@@ -26,7 +26,9 @@ export default function ComingSoonPage({ searchParams }: Props) {
       >
         <h1>Coming soon!</h1>
         <p className="muted">
-          {p?.comingSoonText || "This product is not on sale yet! Check back later."}
+          {p && "comingSoonText" in p && typeof (p as any).comingSoonText === "string"
+            ? ((p as any).comingSoonText as string)
+            : "This product is not on sale yet! Check back later."}
         </p>
       </div>
     </main>
