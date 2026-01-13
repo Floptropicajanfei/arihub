@@ -68,8 +68,8 @@ export default function Home() {
           />
         </Row>
       </section>
-
-      {/* <ProductsStrip /> */}
+ {/**/}
+       <ProductsStrip />
 
       <section className="section">
         <h2>My Projects</h2>
