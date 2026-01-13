@@ -14,7 +14,7 @@ export default function CareersPage() {
     <main className="page">
       <div className="page-head" style={{ marginBottom: 28 }}>
         <h1>Careers</h1>
-        <p className="muted">Browse available roles and apply when open.</p>
+        <p className="muted">Browse available careers in XStage Productions.</p>
       </div>
 
       {openRoles.length === 0 ? (
@@ -30,7 +30,7 @@ export default function CareersPage() {
           <div style={{ textAlign: "center", maxWidth: 520 }}>
             <h2 style={{ marginBottom: 10 }}>There is currently no applications</h2>
             <p className="muted" style={{ marginBottom: 18 }}>
-              Check back for later.
+              Join our Discord server to be notified of upcoming applications.
             </p>
 
             <a
