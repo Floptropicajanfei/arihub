@@ -57,6 +57,10 @@ export default function CareersPage() {
                 <p className="career-card-ref">#{role.ref}</p>
                 <p className="career-card-dept">{role.department}</p>
                 <p className="career-card-muted">Posted {role.posted}</p>
+
+                <div className="career-card-meta">
+                  <span className="career-chip"> {role.location}</span>
+                </div>
               </div>
 
               <div className="career-card-actions">
