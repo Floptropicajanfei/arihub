@@ -1,7 +1,7 @@
 // app/components/ProductsStrip.tsx
 import Link from "next/link";
 import { products } from "@/app/lib/productsData";
-import ProductCard from "@/app/components/ProductCard";
+import ProductCard from "./ProductCard";
 
 export default function ProductsStrip() {
   const top = products.slice(0, 3);

@@ -1,43 +1,40 @@
 // app/lib/productsData.ts
+
 export type Product = {
   id: string;
-
   slug: string;
   name: string;
 
-  // shown on landing + products page card
   shortDescription: string;
 
-  // optional longer text for products page (not a separate product route)
-  pageDescription: string;
-
-  // images for the card slideshow
   cardImages: string[];
-
   robuxPrice: number;
   robloxGameUrl: string;
+
+  // ✅ if true => show "Coming soon" button instead of price/buy
+  comingSoon: boolean;
+  comingSoonText?: string;
 };
 
 export const products: Product[] = [
   {
-    id: "aritest",
-    slug: "aritest",
-    name: "AriTest Product",
+    id: "Chronos",
+    slug: "chronos",
+    name: "Chronos",
 
     shortDescription:
-      "This is a short description that appears on both the landing page and the products page.",
+      "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time. In this product, you receive a folder with a configuration script. You can buy a bot addon for a low price of 500 robux, To purchase the bot please contact floptropicajanfei@gmail.com",
 
-    pageDescription:
-      "This is a longer description that appears on the products page under the product details.",
-
-    // matches your structure: public/products/aritest/1.png etc
     cardImages: [
-      "/products/aritest/1.png",
-      "/products/aritest/2.png",
-      "/products/aritest/3.png",
+      "/products/chronos/1.png",
+      "/products/chronos/2.png",
+      "/products/chronos/3.png",
     ],
 
     robuxPrice: 300,
-    robloxGameUrl: "https://www.roblox.com/games/REPLACE_ME",
+    robloxGameUrl: "https://www.roblox.com/games/112616976341516/Ari-Products",
+
+    comingSoon: true,
+    comingSoonText: "This product is not on sale yet! Check back later.",
   },
 ];

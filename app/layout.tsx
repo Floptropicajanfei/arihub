@@ -1,7 +1,10 @@
+// app/layout.tsx
 import "./globals.css";
 import Footer from "./components/footer";
+import HomeButton from "./components/HomeButton";
 import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import type { Metadata } from "next";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -9,12 +12,9 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-import type { Metadata } from "next";
-
-export const metadata = {
+export const metadata: Metadata = {
   title: "Ari",
   description: "",
-
   openGraph: {
     title: "Ari",
     description: "",
@@ -22,7 +22,7 @@ export const metadata = {
     siteName: "Ari",
     images: [
       {
-        url: "/preview.png", // ✅ YOUR image only
+        url: "/preview.png",
         width: 1200,
         height: 630,
         alt: "Ari",
@@ -30,12 +30,11 @@ export const metadata = {
     ],
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Ari",
     description: "",
-    images: ["/preview.png"], // ✅ same image
+    images: ["/preview.png"],
   },
 };
 
@@ -47,7 +46,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jakarta.className}>
-        {children}
+        {/* Keep the same page width/padding as before */}
+        <main className="page">
+          {/* Button is subtle + aligned with content */}
+          <HomeButton />
+          {children}
+        </main>
+
         <Footer />
         <Analytics />
       </body>

@@ -8,13 +8,11 @@ import ProductsStrip from "./components/ProductsStrip";
 export default function Home() {
   return (
     <main className="page">
-      {/* HERO (CENTERED TEXT) */}
       <section className="hero hero-centered">
         <h1>Hi, I’m Ari</h1>
         <p>I am a designer, developer and a freelancer.</p>
       </section>
 
-      {/* INFO CARDS — 3 BESIDE EACH OTHER, CENTERED */}
       <Row cols={3}>
         <InfoCards
           cards={[
@@ -41,17 +39,12 @@ export default function Home() {
           cards={[
             {
               icon: <img src="/icons/laptop-01.png" alt="Experience" />,
-              lines: [
-                "2 Years Graphic Design",
-                "3 Years Roblox Studio",
-                "2 Years Web Development",
-              ],
+              lines: ["2 Years Graphic Design", "3 Years Roblox Studio", "2 Years Web Development"],
             },
           ]}
         />
       </Row>
 
-      {/* COMMISSIONS */}
       <section className="section">
         <h2>Commissions</h2>
 
@@ -76,10 +69,8 @@ export default function Home() {
         </Row>
       </section>
 
-      {/* PRODUCTS STRIP */}
-      <ProductsStrip />
+      {/* <ProductsStrip /> */}
 
-      {/* PROJECTS */}
       <section className="section">
         <h2>My Projects</h2>
 

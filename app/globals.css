@@ -1233,3 +1233,76 @@ body {
     opacity: 1;
   }
 }
+/* add to app/globals.css (or wherever your global styles live) */
+
+/* keep it close to content */
+.homebtn-wrap {
+  margin-bottom: 14px;
+}
+
+/* no blue, no underline, matches your button style */
+.homebtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: #111;
+  text-decoration: none;
+
+  font-size: 0.85rem;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.homebtn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+/* app/globals.css (ADD THESE AT THE END) */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: transparent;
+  pointer-events: none;
+}
+
+.site-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 18px 0 18px;
+  display: flex;
+  justify-content: flex-start;
+  pointer-events: auto;
+}
+
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.home-btn:hover {
+  transform: translateY(-1px);
+}
+
+.products-page-head {
+  margin-top: 10px;
+}
+
+.products-page-grid {
+  margin-top: 18px;
+}

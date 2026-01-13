@@ -1,6 +1,6 @@
+// app/projects/giuris/page.tsx
 export const dynamic = "force-dynamic";
 
-import Link from "next/link";
 import { projects } from "../projectsData";
 
 export default function GiurisPage() {
@@ -10,18 +10,14 @@ export default function GiurisPage() {
   return (
     <main className="page">
       <section className="project-detail">
-        <Link className="back-link" href="/">← Back Home</Link>
-
         <h1>{project?.title ?? "Giuris"}</h1>
 
-        {/* IMAGE */}
         {project?.imageSrc && (
           <div className="project-detail-image">
             <img src={project.imageSrc} alt={project.title} />
           </div>
         )}
 
-        {/* MAIN INFO BOX */}
         <div className="project-detail-box">
           <div className="project-detail-main">
             <h2>About</h2>
@@ -45,18 +41,10 @@ export default function GiurisPage() {
               <li>Comprehensive Audit Logging & Webhook Integration</li>
             </ul>
 
-            <p>
-              This is only a small part of all the features available within Giuris.
-            </p>
+            <p>This is only a small part of all the features available within Giuris.</p>
           </div>
 
-          {/* BOTTOM BAR BUTTON */}
-          <a
-            className="project-contact"
-            href={discordUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="project-contact" href={discordUrl} target="_blank" rel="noreferrer">
             Join now
           </a>
         </div>
