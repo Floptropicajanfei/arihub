@@ -48,6 +48,6 @@ export const careers: Career[] = [
     highlight:
       "If you are successful in your application, you will be invited to an interview.",
     applyUrl: "https://YOUR_FORM_LINK_HERE",
-    isOpen: true, // ✅ toggle this per role
+    isOpen: false, // ✅ toggle this per role
   },
 ];
