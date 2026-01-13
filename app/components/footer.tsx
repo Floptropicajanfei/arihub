@@ -53,6 +53,7 @@ export default function Footer() {
             title="Other"
             links={[
               { label: "Home", href: "/", external: false },
+             { label: "XStage Careers", href: "/careers" },
               { label: "XStage Productions", href: "/projects/xstage-productions" },
               { label: "Projects Discord Server", href: "https://discord.gg/JfE2rv8FQj", external: true },
             ]}

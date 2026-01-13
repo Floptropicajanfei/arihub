@@ -117,7 +117,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     aria-label="Previous image"
                     style={{
                       position: "absolute",
-                      left: 10,
+                      left: 15,
                       top: "50%",
                       transform: "translateY(-50%)",
                       background: "transparent",
@@ -129,7 +129,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     <img
                       src="/arrowleft.png"
                       alt=""
-                      style={{ width: 28, height: 28 }}
+                      style={{ width: 28, height: 50 }}
                     />
                   </button>
 
@@ -143,8 +143,8 @@ export default function ProductCard({ product }: { product: Product }) {
                     aria-label="Next image"
                     style={{
                       position: "absolute",
-                      right: 10,
-                      top: "50%",
+                      right: 15,
+                      top: "44%",
                       transform: "translateY(-50%)",
                       background: "transparent",
                       border: 0,
@@ -155,7 +155,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     <img
                       src="/arrowright.png"
                       alt=""
-                      style={{ width: 28, height: 28 }}
+                      style={{ width: 28, height: 70 }}
                     />
                   </button>
                 </>
@@ -221,7 +221,7 @@ export default function ProductCard({ product }: { product: Product }) {
             style={{
               width: "min(1100px, 96vw)",
               height: "min(650px, 84vh)",
-              borderRadius: 22,          // ✅ more curve
+              borderRadius: 50,          // ✅ more curve
               overflow: "hidden",         // ✅ clips image to curve
               position: "relative",
               background: "transparent",  // ✅ no grey block
@@ -236,8 +236,8 @@ export default function ProductCard({ product }: { product: Product }) {
               aria-label="Close"
               style={{
                 position: "absolute",
-                right: 18,
-                top: 18,                 // ✅ moved down into the image
+                right: 17,
+                top: 35,                 // ✅ moved down into the image
                 zIndex: 5,
                 width: 42,
                 height: 42,
@@ -291,7 +291,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   <img
                     src="/arrowleft.png"
                     alt=""
-                    style={{ width: 34, height: 34 }}
+                    style={{ width: 58, height: 100 }}
                   />
                 </button>
 
@@ -314,7 +314,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   <img
                     src="/arrowright.png"
                     alt=""
-                    style={{ width: 34, height: 34 }}
+                    style={{ width: 58, height: 100 }}
                   />
                 </button>
               </>
