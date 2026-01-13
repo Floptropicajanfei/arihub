@@ -5,7 +5,7 @@ import { careers } from "./careersData";
 
 export const dynamic = "force-dynamic";
 
-const DISCORD_INVITE = "https://discord.gg/YOUR_INVITE";
+const DISCORD_INVITE = "https://discord.gg/wankEAHvWQ";
 
 export default function CareersPage() {
   const openRoles = careers.filter((c) => c.isOpen);
