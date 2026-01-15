@@ -12,7 +12,7 @@ export type Career = {
   intro: string[];
   responsibilities: string[];
   cardDescription: string;
-  roleDimensions: string[];
+  Requirements: string[];
   highlight?: string;
   applyUrl: string;
   isOpen: boolean;
@@ -41,7 +41,7 @@ export const careers: Career[] = [
       "Support live shows by keeping chat clear and on-topic",
       "Reducing distruptions during live shows inside the arena",
     ],
-    roleDimensions: [
+    Requirements: [
       "You must be 13+",
       "Regular availability, especially during events",
       "Clear, calm, and respectful written communication",

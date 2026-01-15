@@ -50,9 +50,9 @@ export default async function CareerDetailPage({ params }: PageProps) {
           ))}
         </ul>
 
-        <h2>Role Dimensions</h2>
+        <h2>Requirements</h2>
         <ul>
-          {role.roleDimensions.map((x) => (
+          {role.Requirements.map((x) => (
             <li key={x}>{x}</li>
           ))}
         </ul>
