@@ -1,47 +1,57 @@
+// app/components/SmoothScroll.tsx
 "use client";
 
 import { useEffect } from "react";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    // If browser does NOT support CSS smooth scrolling
-    if (!("scrollBehavior" in document.documentElement.style)) {
-      const smoothScroll = (targetY: number, duration = 500) => {
-        const startY = window.scrollY;
-        const diff = targetY - startY;
-        let start: number | null = null;
+    // --- scrollTo patch (type-safe) ---
+    const originalScrollTo = window.scrollTo.bind(window);
 
-        const step = (timestamp: number) => {
-          if (!start) start = timestamp;
-          const knowing = timestamp - start;
-          const percent = Math.min(knowing / duration, 1);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).scrollTo = (optionsOrX?: any, y?: any) => {
+      // scrollTo(options)
+      if (typeof optionsOrX === "object" && optionsOrX !== null) {
+        return originalScrollTo({
+          ...optionsOrX,
+          behavior: "smooth",
+        });
+      }
 
-          window.scrollTo(0, startY + diff * percent);
+      // scrollTo(x, y)
+      const left = typeof optionsOrX === "number" ? optionsOrX : 0;
+      const top = typeof y === "number" ? y : 0;
 
-          if (knowing < duration) {
-            requestAnimationFrame(step);
-          }
-        };
-
-        requestAnimationFrame(step);
-      };
-
-      document.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement;
-        const anchor = target.closest("a[href^='#']") as HTMLAnchorElement | null;
-
-        if (!anchor) return;
-
-        const id = anchor.getAttribute("href")?.slice(1);
-        if (!id) return;
-
-        const el = document.getElementById(id);
-        if (!el) return;
-
-        e.preventDefault();
-        smoothScroll(el.offsetTop);
+      return originalScrollTo({
+        left,
+        top,
+        behavior: "smooth",
       });
-    }
+    };
+
+    // --- scrollIntoView patch (type-safe) ---
+    const originalScrollIntoView = Element.prototype.scrollIntoView;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (Element.prototype as any).scrollIntoView = function (options?: any) {
+      if (typeof options === "object" && options !== null) {
+        return originalScrollIntoView.call(this, {
+          ...options,
+          behavior: "smooth",
+        });
+      }
+
+      // boolean | undefined -> convert to options object
+      return originalScrollIntoView.call(this, {
+        behavior: "smooth",
+        block: options === false ? "nearest" : "start",
+      });
+    };
+
+    return () => {
+      window.scrollTo = originalScrollTo;
+      Element.prototype.scrollIntoView = originalScrollIntoView;
+    };
   }, []);
 
   return null;

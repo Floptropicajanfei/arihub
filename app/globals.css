@@ -1781,6 +1781,7 @@ body {
   color: #555;
   line-height: 1.5;
 }
+/* Smooth scrolling everywhere */
 html {
   scroll-behavior: smooth;
 }
