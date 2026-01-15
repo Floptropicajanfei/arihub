@@ -1,23 +1,20 @@
 // app/careers/careersData.ts
 
+
 export type Career = {
   slug: string;
   title: string;
   ref: string;
   department: string;
   posted: string;
-  location: string; // "Remote" etc
-  type: string; // "Full-time" etc
-
+  location: string;
+  type: string;
   intro: string[];
   responsibilities: string[];
   roleDimensions: string[];
   highlight?: string;
-
   applyUrl: string;
-
-  // ✅ NEW:
-  isOpen: boolean; // true = applications open, false = closed
+  isOpen: boolean;
 };
 
 export const careers: Career[] = [

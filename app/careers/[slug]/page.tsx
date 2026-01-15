@@ -17,98 +17,75 @@ type PageProps = {
 
 export default async function CareerDetailPage({ params }: PageProps) {
   const { slug } = await params;
-
   const role = careers.find((c) => c.slug === slug);
   if (!role) notFound();
 
   return (
     <main className="page">
+      <Link href="/careers" className="back-link no-underline">
+        ← Back
+      </Link>
 
-      {/* UPDATED HEADER */}
-      <header className="career-detail-head" style={{ marginTop: 16 }}>
-        <h1
-          className="career-detail-title"
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            gap: 12,
-            flexWrap: "wrap",
-            marginBottom: 12,
-          }}
-        >
-          {role.title}
-          {role.ref ? (
-            <span
-              className="career-detail-ref"
-              style={{ fontSize: 14, color: "#6b7280", fontWeight: 500 }}
-            >
-              #{role.ref}
-            </span>
-          ) : null}
+      <header className="career-detail-head">
+        <h1 className="career-detail-title">
+          {role.title}{" "}
+          <span className="career-detail-ref">#{role.ref}</span>
         </h1>
 
-        {/* STRAIGHT LINE META */}
-        <div
-          className="career-detail-meta"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            flexWrap: "wrap",
-          }}
-        >
-          {role.department ? (
-            <span
-              className="career-detail-dept"
-              style={{ fontSize: 14, fontWeight: 500 }}
-            >
-              {role.department}
-            </span>
-          ) : null}
-
-          {role.posted ? (
-            <span className="career-detail-muted" style={{ fontSize: 14 }}>
-              Posted {role.posted}
-            </span>
-          ) : null}
+        <div className="career-detail-inline">
+          <span className="career-chip">{role.department}</span>
+          <span className="career-chip">Posted {role.posted}</span>
         </div>
       </header>
 
-      {/* BODY */}
       <section className="career-detail-body">
         {role.intro.map((p) => (
-          <p key={p} className="career-p">
-            {p}
-          </p>
+          <p key={p}>{p}</p>
         ))}
 
-        <h2 className="career-h2">Key Responsibilities</h2>
-        <ul className="career-list">
+        <h2>Key Responsibilities</h2>
+        <ul>
           {role.responsibilities.map((x) => (
             <li key={x}>{x}</li>
           ))}
         </ul>
 
-        <h2 className="career-h2">Role Dimensions</h2>
-        <ul className="career-list">
+        <h2>Role Dimensions</h2>
+        <ul>
           {role.roleDimensions.map((x) => (
             <li key={x}>{x}</li>
           ))}
         </ul>
 
-        {role.highlight ? (
+        {role.highlight && (
           <div className="career-callout">{role.highlight}</div>
-        ) : null}
+        )}
 
         <div className="career-apply-bar">
-          <a
-            className="btn btn-primary"
-            href={role.applyUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Apply here
-          </a>
+          {role.isOpen ? (
+            <a
+              className="btn btn-primary"
+              href={role.applyUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Apply here
+            </a>
+          ) : (
+            <div className="career-closed">
+              <p className="muted">
+                There are currently no applications open.
+              </p>
+              <a
+                className="btn btn-primary"
+                href="https://discord.gg/YOUR_INVITE"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Join our Discord
+              </a>
+            </div>
+          )}
         </div>
       </section>
     </main>
