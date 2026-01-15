@@ -1785,3 +1785,33 @@ body {
 html {
   scroll-behavior: smooth;
 }
+/* app/globals.css */
+
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;              /* Chrome/Safari */
+}
+
+/* If YOUR layout scrolls inside .page (common), hide that too */
+.page {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.page::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* DO NOT USE CSS SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ensure nothing overlaps the progress bar */
+body {
+  position: relative;
+}
