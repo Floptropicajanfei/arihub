@@ -11,6 +11,7 @@ export type Career = {
   type: string;
   intro: string[];
   responsibilities: string[];
+  cardDescription: string;
   roleDimensions: string[];
   highlight?: string;
   applyUrl: string;
@@ -27,9 +28,10 @@ export const careers: Career[] = [
     location: "Remote",
     type: "Full-time",
     intro: [
-      "Community Moderators are responsible for maintaining a safe, welcoming, and respectful environment across all XStage community platforms.",
-      "They act as the first line of moderation, ensuring rules are upheld, conversations remain appropriate, and users receive timely support during both normal operations and live events.",
+      "Community Moderators are responsible for maintaining a safe, welcoming, and respectful environment across all XStage community platforms. They act as the first line of moderation, ensuring rules are upheld, conversations remain appropriate, and users receive timely support during both normal operations and live events.",
     ],
+    cardDescription:
+      "Support public-facing communications and help grow brand presence across social platforms.",
     responsibilities: [
       "Monitor chat activity across Discord and Roblox experiences",
       "Enforce community rules and platform guidelines consistently",

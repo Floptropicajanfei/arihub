@@ -78,7 +78,7 @@ export default async function CareerDetailPage({ params }: PageProps) {
               </p>
               <a
                 className="btn btn-primary"
-                href="https://discord.gg/YOUR_INVITE"
+                href="https://discord.gg/wankEAHvWQ"
                 target="_blank"
                 rel="noreferrer"
               >
