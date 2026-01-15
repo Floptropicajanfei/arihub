@@ -21,7 +21,7 @@ export default function ScrollProgress() {
 
     const animate = () => {
       /* EXTREMELY SMOOTH EASING */
-    const ease = 0.00008;
+    const ease = 0.035;
 
 
       current.current += (target.current - current.current) * ease;
