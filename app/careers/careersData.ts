@@ -22,32 +22,38 @@ export type Career = {
 
 export const careers: Career[] = [
   {
-    slug: "marketing-social-media-assistant",
-    title: "Marketing & Social Media Assistant",
-    ref: "CEPRX-010126M",
-    department: "Customer Experience, Public & External Relations",
-    posted: "6 January 2026",
+    slug: "Community-Moderator",
+    title: "Community Moderator",
+    ref: "PRCM-160126",
+    department: "Community Operations, Trust & Safety Department",
+    posted: "15 January 2026",
     location: "Remote",
     type: "Full-time",
     intro: [
-      "The Social Media & Marketing Assistant supports jaDevelopment’s public-facing communications by delivering a consistent, engaging, and positive presence across social media platforms.",
-      "Working collaboratively with colleagues and technical teams, the postholder helps strengthen brand awareness, community connection, and digital participation while operating in line with organisational policies.",
+      "Community Moderators are responsible for maintaining a safe, welcoming, and respectful environment across all XStage community platforms.",
+      "They act as the first line of moderation, ensuring rules are upheld, conversations remain appropriate, and users receive timely support during both normal operations and live events.",
     ],
     responsibilities: [
-      "Develop and implement strategic social media plans to grow brand presence on social media platforms",
-      "Create engaging multimedia content from short-form videos to promotional posts and graphics",
-      "Ensure all content reflects the jaDevelopment brand voice and guidelines",
-      "Actively engage with the jaDevelopment community across all platforms",
-      "Work closely with the Roblox & Web Development Engineering Team to align social content with upcoming development projects",
-      "Stay up to date with the latest social media trends across all platforms",
+      "Monitor chat activity across Discord and Roblox experiences",
+      "Enforce community rules and platform guidelines consistently",
+      "De-escalate conflicts and handle disruptive behaviour calmly",
+      "Assist users with basic questions and direct them to the correct channels",
+      "Report serious incidents to Leadership",
+      "Support live shows by keeping chat clear and on-topic",
+      "Reducing distruptions during live shows inside the arena",
     ],
     roleDimensions: [
-      "Able to work independently or as part of a team to support the delivery of jaDevelopment’s digital communications and online presence.",
-      "Responsible for contributing to quality assurance processes, maintaining appropriate records, and supporting administrative tasks related to social media and marketing activity.",
+      "You must be 13+ (Discord policy enforcment)",
+      "Regular availability, especially during events",
+      "Clear, calm, and respectful written communication",
+      "Strong understanding of community rules and guidelines",
+      "Able to act impartially and responsibly at all times",
+      "No recent moderation infractions or disciplinary history",
+      "Have decent English skills",
     ],
     highlight:
-      "If you are successful in your application, you will be invited to an interview.",
+      "If you successfully pass your Application, you will receive a Trial Staff Member role including training and close monitoring.",
     applyUrl: "https://YOUR_FORM_LINK_HERE",
-    isOpen: false, // ✅ toggle this per role
+    isOpen: true, // ✅ toggle this per role
   },
 ];
