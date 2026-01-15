@@ -2,6 +2,7 @@
 import "./globals.css";
 import Footer from "./components/footer";
 import HomeButton from "./components/HomeButton";
+import SmoothScroll from "./components/SmoothScroll";
 import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
@@ -46,6 +47,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jakarta.className}>
+        <SmoothScroll />
+
         {/* Keep the same page width/padding as before */}
         <main className="page">
           {/* Button is subtle + aligned with content */}

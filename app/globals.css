@@ -1781,3 +1781,6 @@ body {
   color: #555;
   line-height: 1.5;
 }
+html {
+  scroll-behavior: smooth;
+}
