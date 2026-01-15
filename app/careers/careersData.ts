@@ -42,7 +42,7 @@ export const careers: Career[] = [
       "Reducing distruptions during live shows inside the arena",
     ],
     roleDimensions: [
-      "You must be 13+ (Discord policy enforcment)",
+      "You must be 13+",
       "Regular availability, especially during events",
       "Clear, calm, and respectful written communication",
       "Strong understanding of community rules and guidelines",
