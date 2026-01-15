@@ -31,7 +31,7 @@ export const careers: Career[] = [
       "Community Moderators are responsible for maintaining a safe, welcoming, and respectful environment across all XStage community platforms. They act as the first line of moderation, ensuring rules are upheld, conversations remain appropriate, and users receive timely support during both normal operations and live events.",
     ],
     cardDescription:
-      "Support public-facing communications and help grow brand presence across social platforms.",
+      "A Community Moderator helps keep the community safe, respectful, and welcoming by monitoring activity and enforcing rules. They support users, manage disruptive behaviour, and ensure discussions and events run smoothly.",
     responsibilities: [
       "Monitor chat activity across Discord and Roblox experiences",
       "Enforce community rules and platform guidelines consistently",
