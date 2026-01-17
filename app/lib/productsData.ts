@@ -26,7 +26,7 @@ export const products: Product[] = [
     slug: "chronos",
     name: "Chronos",
     shortDescription:
-      "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time. In this product, you receive a folder with a configuration script. You can buy a bot addon for a low price of 500 robux, To purchase the bot please contact floptropicajanfei@gmail.com",
+      "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time. More information coming soon",
 
     cardImages: [
       "/products/chronos/1.png",
@@ -34,7 +34,7 @@ export const products: Product[] = [
       "/products/chronos/3.png",
     ],
 
-    robuxPrice: 300,
+    robuxPrice: 500,
     robloxGameUrl: "https://www.roblox.com/games/112616976341516/Ari-Products",
     comingSoon: true,
   },
