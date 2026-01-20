@@ -53,6 +53,6 @@ export const careers: Career[] = [
     highlight:
       "If you successfully pass your Application, you will receive a Trial Staff Member role including training and close monitoring.",
     applyUrl: "https://forms.gle/jy9V3sEx9gf6e3AYA",
-    isOpen: true, // ✅ toggle this per role
+    isOpen: false, // ✅ toggle this per role
   },
 ];
