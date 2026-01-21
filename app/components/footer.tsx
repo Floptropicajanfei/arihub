@@ -46,6 +46,7 @@ export default function Footer() {
               { label: "Discord", href: "https://discord.com/users/1213478713765666857#1458226454893432954", external: true },
               { label: "Twitter", href: "https://x.com/floptrop_", external: true },
               { label: "Mail", href: "mailto:floptropicajanfei@gmail.com", external: true },
+              { label: "Resume", href: "https://docs.google.com/document/d/1mGq4bRINoU3vUobnNTidGCr2r-zLR8ZrGI2-qF4adjg/edit?usp=sharing", external: true },
             ]}
           />
 
@@ -53,7 +54,7 @@ export default function Footer() {
             title="Other"
             links={[
               { label: "Home", href: "/", external: false },
-             { label: "XStage Careers", href: "/careers" },
+              { label: "XStage Careers", href: "/careers" },
               { label: "XStage Productions", href: "/projects/xstage-productions" },
               { label: "Projects Discord Server", href: "https://discord.gg/JfE2rv8FQj", external: true },
             ]}
