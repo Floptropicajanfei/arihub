@@ -12,7 +12,7 @@ type HiddenImage = {
 };
 
 const IMAGES: HiddenImage[] = [
-  { src: "/hidden/1.webp", nsfw: true },
+  { src: "/hidden/1.webp", nsfw: false },
   { src: "/hidden/2.jpg", nsfw: false },
   { src: "/hidden/3.webp", nsfw: false },
   { src: "/hidden/4.jpeg", nsfw: false },
