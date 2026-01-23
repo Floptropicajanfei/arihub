@@ -42,6 +42,18 @@ const IMAGES: HiddenImage[] = [
   { src: "/hidden/29.avif", nsfw: false },
   { src: "/hidden/30.jpg", nsfw: false },
   { src: "/hidden/31.jpeg", nsfw: false },
+  { src: "/hidden/35.jpeg", nsfw: false },
+  { src: "/hidden/36.jpeg", nsfw: false },
+  { src: "/hidden/38.jpeg", nsfw: true },
+  { src: "/hidden/38.webp", nsfw: true },
+  { src: "/hidden/39.jpg", nsfw: true },
+  { src: "/hidden/40.jpg", nsfw: true },
+  { src: "/hidden/41.jpg", nsfw: true },
+  { src: "/hidden/42.jpg", nsfw: true },
+  { src: "/hidden/43.jpeg", nsfw: true },
+  { src: "/hidden/44.jpeg", nsfw: true },
+  { src: "/hidden/45.jpeg", nsfw: true },
+
 ];
 
 export default function HiddenPage() {
