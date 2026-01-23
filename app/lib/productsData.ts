@@ -7,17 +7,29 @@ export type Product = {
   name: string;
   shortDescription: string;
 
-  // used by ProductCard slideshow
-  cardImages: string[];
-
-  // optional extra line ProductCard shows (YOUR ERROR was here)
+  // optional bits used by the new per-product page
+  tagline?: string;
+  description?: string;
   pageDescription?: string;
 
+  // images
+  icon?: string;
+  cardImage?: string;
+  cardImages?: string[];
+  pageImages?: string[]; // use up to 3 here
+
+  // purchase
   robuxPrice: number;
   robloxGameUrl: string;
 
-  // coming soon behaviour
+  // toggles
+  onSale?: boolean; // false = hide purchase (shows coming soon panel)
   comingSoon?: boolean;
+  comingSoonText?: string;
+
+  // demo center toggle
+  hasDemoCenter?: boolean;
+  demoCenterUrl?: string;
 };
 
 export const products: Product[] = [
@@ -25,17 +37,21 @@ export const products: Product[] = [
     id: "Chronos",
     slug: "chronos",
     name: "Chronos",
-    shortDescription:
-      "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time. More information coming soon",
+    shortDescription: "A short description for the card.",
+    tagline: "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time. More information coming soon",
+    description:
+      "  ",
 
-    cardImages: [
-      "/products/chronos/1.png",
-      "/products/chronos/2.png",
-      "/products/chronos/3.png",
-    ],
+    icon: "/products/chronos/logo.png",
+    pageImages: ["/products/chronos/1.png", "/products/chronos/2.png", "/products/chronos/3.png"],
 
-    robuxPrice: 500,
-    robloxGameUrl: "https://www.roblox.com/games/112616976341516/Ari-Products",
+    robuxPrice: 300,
+    robloxGameUrl: "https://www.roblox.com/games/REPLACE_ME",
+
+    onSale: true,
     comingSoon: true,
+
+    hasDemoCenter: true,
+    demoCenterUrl: "https://www.roblox.com/games/REPLACE_ME_DEMO",
   },
 ];
