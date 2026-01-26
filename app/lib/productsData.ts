@@ -37,7 +37,7 @@ export const products: Product[] = [
     id: "Chronos",
     slug: "chronos",
     name: "Chronos",
-    shortDescription: "A short description for the card.",
+    shortDescription: "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time.",
     tagline: "Chronos is a Trello-powered in-game TV board that displays upcoming shows in real time. More information coming soon",
     description:
       "  ",
