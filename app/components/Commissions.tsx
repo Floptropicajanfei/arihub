@@ -16,7 +16,7 @@ export default function Commissions() {
             "Black Friday discount",
           ]}
           price="Starting at £49"
-          unavailable={false}
+          unavailable={true}
           footerText="Contact"
         />
 
@@ -30,7 +30,7 @@ export default function Commissions() {
             "Black Friday discount",
           ]}
           price="Starting at £99"
-          unavailable={false}
+          unavailable={true}
           footerText="Contact"
         />
       </div>
