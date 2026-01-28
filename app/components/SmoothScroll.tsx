@@ -17,7 +17,7 @@ export default function SmoothScroll() {
 
     const smoothScroll = (
       targetY: number,
-      duration = 1500 // ⬅ slower = smoother (increase if needed)
+      duration = 25 // ⬅ slower = smoother (increase if needed)
     ) => {
       const startY = window.scrollY;
       const diff = targetY - startY;

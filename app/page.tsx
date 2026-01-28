@@ -4,8 +4,9 @@ import CommissionCard from "./components/CommissionCard";
 import Row from "./components/Row";
 import ProjectCard from "./components/ProjectCard";
 import ProductsStrip from "./components/ProductsStrip";
+import DonationCard from "./components/DonationCard";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="page">
       <section className="hero hero-centered">
@@ -46,6 +47,13 @@ export default function Home() {
       </Row>
 
       <section className="section">
+        <h2>Support the work</h2>
+        <Row cols={1}>
+          <DonationCard paypalUrl="https://paypal.me/aridonate" />
+        </Row>
+      </section>
+
+      <section className="section">
         <h2>Commissions</h2>
 
         <Row cols={2}>
@@ -68,8 +76,8 @@ export default function Home() {
           />
         </Row>
       </section>
- {/**/}
-       <ProductsStrip />
+
+      <ProductsStrip />
 
       <section className="section">
         <h2>My Projects</h2>
