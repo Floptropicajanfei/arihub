@@ -68,7 +68,9 @@ export default function CommissionCard({
 
       {unavailable && (
         <div className="commission-overlay">
-          <span>Currently Unavailable</span>
+          <span>Currently Unavailable
+            Check back later!
+          </span>
         </div>
       )}
     </div>
