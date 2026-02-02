@@ -1,4 +1,5 @@
 // app/page.tsx
+import Link from "next/link";
 import InfoCards from "./components/InfoCards";
 import CommissionCard from "./components/CommissionCard";
 import Row from "./components/Row";
@@ -56,28 +57,58 @@ export default async function Home() {
       <section className="section">
         <h2>Commissions</h2>
 
-        <Row cols={2}>
-          <CommissionCard
-            title="Roblox Building"
-            description="Full Roblox build package with custom made assets, scripts and builds."
-            items={["Roblox game", "Models", "Very detailed builds"]}
-            price="Starting at £49.99"
-          />
-
-          <CommissionCard
-            title="Website Coding"
-            description="Full website with assets, premade texts and more."
-            items={[
-              "Custom made assets",
-              "Fully designed theme, and well thought out colours, typography and more",
-              "Free website hosting",
-            ]}
-            price="Starting at £99.99"
-          />
-        </Row>
+        <article className="product-box" style={{ textAlign: "center" }}>
+          <div className="product-body">
+            <p className="callout-eyebrow" style={{ marginBottom: 4 }}>
+              We moved!
+            </p>
+            <h3 className="product-title" style={{ marginBottom: 6 }}>
+              Commissions now live on our new website.
+            </h3>
+            <p className="product-desc" style={{ marginBottom: 12 }}>
+              View every package and add-on in one place.
+            </p>
+          </div>
+          <div className="product-footer" style={{ justifyContent: "center" }}>
+            <a
+              className="btn-primary"
+              href="https://ariproducts.aricorp.co.uk/commissions"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Go to commissions
+            </a>
+          </div>
+        </article>
       </section>
 
-      <ProductsStrip />
+      <section className="section">
+        <h2>Products</h2>
+
+        <article className="product-box" style={{ textAlign: "center" }}>
+          <div className="product-body">
+            <p className="callout-eyebrow" style={{ marginBottom: 4 }}>
+              We moved!
+            </p>
+            <h3 className="product-title" style={{ marginBottom: 6 }}>
+              Products are now on the new site.
+            </h3>
+            <p className="product-desc" style={{ marginBottom: 12 }}>
+              Explore demos, pricing, and media there.
+            </p>
+          </div>
+          <div className="product-footer" style={{ justifyContent: "center" }}>
+            <a
+              className="btn-primary"
+              href="https://ariproducts.aricorp.co.uk/products"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Go to products
+            </a>
+          </div>
+        </article>
+      </section>
 
       <section className="section">
         <h2>My Projects</h2>
