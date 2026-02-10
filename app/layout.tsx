@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Ari",
     images: [
       {
-        url: "/preview.png",
+        url: "/previewv1.png",
         width: 1200,
         height: 630,
         alt: "Ari",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ari",
     description: "",
-    images: ["/preview.png"],
+    images: ["/previewv1.png"],
   },
 };
 
