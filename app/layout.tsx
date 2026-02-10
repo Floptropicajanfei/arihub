@@ -3,6 +3,8 @@ import "./globals.css";
 import Footer from "./components/footer";
 import HomeButton from "./components/HomeButton";
 import ScrollProgress from "./components/ScrollProgress";
+import PagePulseGrid from "./components/PagePulseGrid";
+import GlobalReveal from "./components/GlobalReveal";
 import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
@@ -49,6 +51,8 @@ export default function RootLayout({
       <body className={jakarta.className}>
         {/* Top progress bar */}
         <ScrollProgress />
+        <PagePulseGrid />
+        <GlobalReveal />
 
         <main className="page">
           <HomeButton />

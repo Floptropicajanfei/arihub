@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import FooterPulseGrid from "./FooterPulseGrid";
 
 type FooterLink = {
   label: string;
@@ -36,6 +39,7 @@ function FooterColumn({
 export default function Footer() {
   return (
     <footer className="site-footer">
+      <FooterPulseGrid />
       <div className="footer-inner">
 
         {/* COLUMNS */}
