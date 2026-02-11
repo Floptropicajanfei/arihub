@@ -1,10 +1,10 @@
 // app/layout.tsx
 import "./globals.css";
 import Footer from "./components/footer";
-import HomeButton from "./components/HomeButton";
 import ScrollProgress from "./components/ScrollProgress";
 import PagePulseGrid from "./components/PagePulseGrid";
 import GlobalReveal from "./components/GlobalReveal";
+import { TopBar } from "./components/TopBar";
 import { Analytics } from "@vercel/analytics/react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
@@ -53,9 +53,9 @@ export default function RootLayout({
         <ScrollProgress />
         <PagePulseGrid />
         <GlobalReveal />
+        <TopBar />
 
         <main className="page">
-          <HomeButton />
           {children}
         </main>
 

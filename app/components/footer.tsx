@@ -37,10 +37,21 @@ function FooterColumn({
 }
 
 export default function Footer() {
+  // Change to "amber" or "red" to toggle the visible status pill.
+  const status: "green" | "amber" | "red" = "green";
+
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" data-status={status}>
       <FooterPulseGrid />
       <div className="footer-inner">
+
+        <div className="footer-left">
+          {/* BRAND */}
+          <div className="footer-brand">
+            <img src="/favicon.ico" alt="AriHub favicon" className="footer-favicon" />
+            <span className="footer-brand-text">AriCorp</span>
+          </div>
+        </div>
 
         {/* COLUMNS */}
         <div className="footer-cols">
@@ -74,6 +85,22 @@ export default function Footer() {
               { label: "Cookie Policy", href: "/legal/cookies" },
             ]}
           />
+        </div>
+      </div>
+
+      {/* STATUS STRIP (sits at the bottom; only one row visible based on data-status) */}
+      <div className="footer-status-bar" aria-label="Service status">
+        <div className="status-row" data-status-variant="green">
+          <span className="status-dot status-green" aria-hidden />
+          <span className="status-label">Services operational</span>
+        </div>
+        <div className="status-row" data-status-variant="amber">
+          <span className="status-dot status-amber" aria-hidden />
+          <span className="status-label">Degraded performance</span>
+        </div>
+        <div className="status-row" data-status-variant="red">
+          <span className="status-dot status-red" aria-hidden />
+          <span className="status-label">Service outage</span>
         </div>
       </div>
 
